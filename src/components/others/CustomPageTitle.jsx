@@ -1,0 +1,134 @@
+import { THEME } from '@theme/index';
+import React from 'react'
+import styled from 'styled-components'
+import { IoIosArrowBack } from 'react-icons/io'
+import Flex from './Flex';
+
+const Titles = styled.div`
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
+    gap:8px;
+
+    & span{
+        /* background:${THEME.white}; */
+        display:inline-block;
+        width:30px;
+        height:30px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:50%;
+        cursor: pointer;
+        /* box-shadow:${THEME.button_box_shadow} */
+    }
+
+    & h2 {
+        font-size: 1.25rem;
+        color: ${THEME.primary_color_dark};
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+`;
+
+const Titlesmodal = styled.div`
+        color: #BC0000;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: capitalize;
+`
+
+const TitleScroll = styled.div`
+    & h2 {
+        font-size: 1.1rem;
+        color: ${THEME.primary_color};
+        font-weight: 800;
+        margin-bottom:10px;
+    }
+`;
+
+
+const FormTitles = styled.div`
+    & h2 {
+        font-size: 20px;
+        color: #000000;
+        font-weight: 600;
+        text-transform: capitalize;
+        margin-bottom:10px;
+    }
+`;
+
+const FormSubTitles = styled.div`
+    & h4 {
+        font-size: 14px;
+        color: ${THEME.gray};
+        font-weight: 500;
+        text-transform: capitalize;
+        border-bottom:1px solid ${THEME.gray};
+        margin:10px;
+    }
+`;
+export const StyledInvoiceTitle  = styled.div`
+& h5 {
+    font-size: 20px;
+    color: var(--dark-color);
+    font-weight: 500;
+    text-transform:capitalize;
+    margin-bottom:20px;
+}
+`;
+export const CustomPageTitle = ({ Heading, style, PreviousPage }) => {
+    const goBack = () => {
+        PreviousPage()
+    }
+    return (
+        <Titles style={style}>
+            {/* <span onClick={goBack}> <IoIosArrowBack size={18}/> </span> */}
+            <h2>{Heading}</h2>
+        </Titles>
+    )
+}
+
+export const CustomModalPageTitle = ({ ModalHeading, style }) => {
+
+    return (
+        <Titlesmodal style={style}>
+            <Flex aligncenter={true}>
+            <p style={{marginTop:'2px'}}>*</p>
+            <p><span></span>&nbsp;{ModalHeading}</p>
+            </Flex>
+        </Titlesmodal>
+    )
+}
+
+export const CustomPageTitleScroll = ({ Heading }) => {
+    return (
+        <TitleScroll>
+            <h2>{Heading}</h2>
+        </TitleScroll>
+    )
+}
+
+export const CustomPageFormTitle = ({ Heading }) => {
+    return (
+        <FormTitles>
+            <h2>{Heading}</h2>
+        </FormTitles>
+    )
+}
+
+export const CustomPageFormSubTitle = ({ Heading }) => {
+    return (
+        <FormSubTitles>
+            <h4>{Heading}</h4>
+        </FormSubTitles>
+    )
+}
+
+export const InvoiceTitle = ({Title}) => {
+  return (
+    <StyledInvoiceTitle>
+        <h5>{Title}</h5>
+    </StyledInvoiceTitle>
+  )
+}

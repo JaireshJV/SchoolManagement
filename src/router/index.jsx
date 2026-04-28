@@ -1,0 +1,20 @@
+import React from 'react'
+import AuthRouter from '@router/components/AuthRouter'
+import { Routes, Route } from 'react-router'
+
+const Routers = ({ token }) => {
+
+    const isAuthenticated = Boolean(token) ;
+    return (
+        <Routes>
+          <Route
+            path="/*"
+            element={
+              <AuthRouter isAuthenticated={token} />
+            }
+          />
+        </Routes>
+    )
+}
+
+export default Routers
