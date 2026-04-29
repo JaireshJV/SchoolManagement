@@ -55,6 +55,7 @@ import { BiCartAdd, BiCartDownload } from 'react-icons/bi';
 import { GiWallet } from 'react-icons/gi';
 import { FiPackage } from "react-icons/fi";
 import { FaUserGroup } from "react-icons/fa6";
+import { FcHome } from "react-icons/fc";
 
 
 export const adminItems = (collapsed) => {
@@ -70,7 +71,7 @@ export const adminItems = (collapsed) => {
 
   const items = [
     // Dashboard
-    getItem("Dashboard", "", "🏠"),
+    getItem("Dashboard", "", <FcHome />),
 
     // Company
     getItem(
@@ -83,7 +84,8 @@ export const adminItems = (collapsed) => {
       "group"
     ),
     getItem("Student", "sub1", <PiStudentFill />, [
-      getItem("View Students", "viewStudents", <TbEye />),
+      // getItem("View Students", "viewStudents", <TbEye />),
+       getItem("Course Management", "courseManagement", <TbEye />),
     ]),
       // getItem("View Students", "viewStudents", <FaUserGroup />),
 

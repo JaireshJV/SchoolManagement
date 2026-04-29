@@ -4,6 +4,7 @@ import UserSignin from "@modules/Auth/Partials/UserSignin";
 import ViewStudent from "@modules/Students/Partials/ViewStudents";
 import { StudentModal } from "@modules/Students/Partials/StudentView";
 import { SuperAdminDashboard } from "@modules/Dashboard/SuperAdminDashboard/Partials/DashboardMainView";
+import { ViewCourseManagement } from "@modules/CourseManagement/ViewCourseManagement";
 
 export const anonymous = [
   {
@@ -48,6 +49,10 @@ export const adminAuthenticated = [
   {
     routePath: "/studentDetails/:id",
     Component: StudentModal,
+  },
+    {
+    routePath: "/courseManagement",
+    Component: ViewCourseManagement,
   },
 ];
 

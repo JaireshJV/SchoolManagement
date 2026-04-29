@@ -13,6 +13,7 @@ const ROOT = {
     secondary_color_light: '#FF6651',
   
     // ======  Color  ======
+    app_color : "#ff8000",
     blue: '#212529',
     indigo: '#6610f2',
     purple: '#6f42c1',
