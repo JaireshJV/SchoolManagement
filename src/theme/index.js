@@ -137,6 +137,7 @@ const ROOT = {
     GREEN_T_85: '#15803d',
     GREEN_S_56: '#5DC288',
     GREEN_100: '#27AB66',
+    GREEN_NOW : '#00b050',
   }
   
   const BLUE_COLORS = {

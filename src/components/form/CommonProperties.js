@@ -33,7 +33,7 @@ export const Styles = {
   radioBtnBorderColor: THEME.primary_color,
   radioBtnRadius: "50%",
   // ------ Tab Active Color
-  tabActiveBarColor: THEME.primary_color,
+  tabActiveBarColor: THEME.GREEN_NOW,
   // tabActiveBarColor: THEME.TRANSPARENT,
   // ------ SwitchActive Color
   switchActiveColor: THEME.primary_color,

@@ -13,8 +13,11 @@ import { IoIosArrowDown } from "react-icons/io";
 import { MdChevronRight } from "react-icons/md";
 import { useNavigate, useLocation } from "react-router-dom";
 import { HeaderSection } from "./Header";
-import logoFull from "../assets/images/EduProLogo.png";
+import logoFull from "../assets/images/LogoWithName.png";
 import logoSmall from "../assets/images/EduProLogo.png";
+import { FcGraduationCap } from "react-icons/fc";
+import { useDispatch } from "react-redux";
+import { logOut } from "@modules/Auth/authSlice";
 
 const DashboardLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -24,6 +27,7 @@ const DashboardLayout = ({ children }) => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   // ✅ FIXED
   const toggleDropdown = (key) => {
@@ -54,9 +58,12 @@ const DashboardLayout = ({ children }) => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/signin");
+  const handleLogOut = () => {
+    dispatch(logOut());
+    localStorage.removeItem("openKeys");
+    localStorage.removeItem("persist");
+    removeSelectedCompanyId();
+    window.location.href = "/signin";
   };
 
   useEffect(() => {
@@ -85,11 +92,11 @@ const DashboardLayout = ({ children }) => {
         <div className="sidebar-header">
           <div className="logo">
             {/* Full logo (visible when expanded or hovered) */}
-            <div className="logo-full">
-            <img src={logoFull} alt="Edu Pro"  />
-            <h4>EduPro</h4>
-            <p>Institute ERP</p>
-            </div>
+            {/* <div className="logo-full"> */}
+              <img src={logoFull} alt="Edu Pro" className="logo-full" />
+              {/* <h4>EduPro</h4>
+              <p>Institute ERP</p> */}
+            {/* </div> */}
 
             {/* Small logo (visible when collapsed) */}
             <img src={logoSmall} alt="Edu Pro" className="logo-small" />
@@ -117,174 +124,222 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/")}
                 >
-                  <HomeOutlined />
+                  <div className="emoji-collapsed">🏠 </div>
+              
                   {(!collapsed || hovered) && <span>Dashboard</span>}
                 </div>
               </li>
 
-              <hr className="section-divider" />
+              {/* <hr className="section-divider" /> */}
 
-              {/* Vendor */}
+              {/* Students */}
               {(!collapsed || hovered) && (
                 <li className="section-label">STUDENTS</li>
               )}
 
-              <li
-                className={`dropdown-item ${
-                  openDropdown === "vendor" ? "open" : ""
-                }`}
-              >
+              <li>
                 <div
-                  className={`dropdown-header ${
-                    openDropdown === "vendor" ? "active" : ""
+                  className={`sidebar-link ${
+                    location.pathname === "/students" ? "active" : ""
                   }`}
-                  onClick={() => toggleDropdown("vendor")}
+                  onClick={() => handleNavigate("/students")}
                 >
-                  <div className="dropdown-left">
-                    <ShopOutlined />
-                    {(!collapsed || hovered) && <span>Vendor Purchases</span>}
-                  </div>
-
-                  {(!collapsed || hovered) && (
-                    <div className="toggle-icon-wrap">
-                      {openDropdown === "vendor" ? (
-                        <IoIosArrowDown />
-                      ) : (
-                        <MdChevronRight />
-                      )}
-                    </div>
-                  )}
+                  <div className="emoji-collapsed">🎓 </div>
+                 
+                  {(!collapsed || hovered) && <span>Students</span>}
                 </div>
-
-                {(!collapsed || hovered) && openDropdown === "vendor" && (
-                  <ul className="dropdown-list">
-                    <li
-                      className="sub-item"
-                      onClick={() => handleNavigate("/courseManagement")}
-                    >
-                      Vendor Purchases
-                    </li>
-                    <li
-                      className="sub-item"
-                      onClick={() => handleNavigate("/vendor-purchase-order")}
-                    >
-                      Purchases Orders
-                    </li>
-                    <li
-                      className="sub-item"
-                      onClick={() => handleNavigate("/vendor-purchase-returns")}
-                    >
-                      Purchases Returns
-                    </li>
-                  </ul>
-                )}
               </li>
 
-              <hr className="section-divider" />
+              {/* Parents */}
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/parents" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/parents")}
+                >
+                  <div className="emoji-collapsed">👨‍👩‍👧</div>
 
-              {/* Users */}
+                <div>{(!collapsed || hovered) && <span>Parents</span>}</div>
+                </div>
+              </li>
+
+              {/* Staff */}
+
               {(!collapsed || hovered) && (
-                <li className="section-label">Users</li>
+                <li className="section-label">STAFF</li>
               )}
 
-              <li
-                className={`dropdown-item ${
-                  openDropdown === "users" ? "open" : ""
-                }`}
-              >
+              <li>
                 <div
-                  className="dropdown-header"
-                  onClick={() => toggleDropdown("users")}
+                  className={`sidebar-link ${
+                    location.pathname === "/teachers" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/teachers")}
                 >
-                  <div className="dropdown-left">
-                    <UserOutlined />
-                    {(!collapsed || hovered) && <span>Users</span>}
-                  </div>
-
-                  {(!collapsed || hovered) && (
-                    <div className="toggle-icon-wrap">
-                      {openDropdown === "users" ? (
-                        <IoIosArrowDown />
-                      ) : (
-                        <MdChevronRight />
-                      )}
-                    </div>
-                  )}
+                    <div className="emoji-collapsed">👨‍🏫 </div>
+                  
+                  {(!collapsed || hovered) && <span>Teachers</span>}
                 </div>
-
-                {(!collapsed || hovered) && openDropdown === "users" && (
-                  <ul className="dropdown-list">
-                    <li className="sub-item">All Users</li>
-                    <li className="sub-item">Add New</li>
-                    <li className="sub-item">User Roles</li>
-                  </ul>
-                )}
               </li>
 
-              <hr className="section-divider" />
+              {/* Acedemic */}
 
-              {/* Settings */}
               {(!collapsed || hovered) && (
-                <li className="section-label">Settings</li>
+                <li className="section-label">ACADEMIC</li>
               )}
 
-              <li
-                className={`dropdown-item ${
-                  openDropdown === "generalsettings" ? "open" : ""
-                }`}
-              >
+              <li>
                 <div
-                  className="dropdown-header"
-                  onClick={() => toggleDropdown("generalsettings")}
+                  className={`sidebar-link ${
+                    location.pathname === "/courseManagement" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/courseManagement")}
                 >
-                  <div className="dropdown-left">
-                    <SettingOutlined />
-                    {(!collapsed || hovered) && <span>General Settings</span>}
-                  </div>
+                    <div className="emoji-collapsed">📚 </div>
 
-                  {(!collapsed || hovered) && (
-                    <div className="toggle-icon-wrap">
-                      {openDropdown === "generalsettings" ? (
-                        <IoIosArrowDown />
-                      ) : (
-                        <MdChevronRight />
-                      )}
-                    </div>
-                  )}
+                  {(!collapsed || hovered) && <span>Courses</span>}
                 </div>
-
-                {(!collapsed || hovered) &&
-                  openDropdown === "generalsettings" && (
-                    <ul className="dropdown-list">
-                      <li
-                        className="sub-item"
-                        onClick={() => handleNavigate("/profilesetting")}
-                      >
-                        Profile
-                      </li>
-                      <li
-                        className="sub-item"
-                        onClick={() => handleNavigate("/securitysetting")}
-                      >
-                        Security
-                      </li>
-                      <li
-                        className="sub-item"
-                        onClick={() => handleNavigate("/notification")}
-                      >
-                        Notification
-                      </li>
-                    </ul>
-                  )}
               </li>
 
-              <hr className="section-divider" />
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/nnn" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/")}
+                >
+                    <div className="emoji-collapsed">🗂️ </div>
+                  
+                  {(!collapsed || hovered) && <span>Batches</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/classSchedule" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/classSchedule")}
+                >
+                    <div className="emoji-collapsed">📅 </div>
+
+                  {(!collapsed || hovered) && <span>Schedule</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/videoManager" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/videoManager")}
+                >
+                    <div className="emoji-collapsed">📹 </div>
+
+                  {(!collapsed || hovered) && <span>Recorded Videos</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/studyMaterial" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/studyMaterial")}
+                >
+                    <div className="emoji-collapsed">📁 </div>
+                
+                  {(!collapsed || hovered) && <span>Study Material</span>}
+                </div>
+              </li>
+
+              {/* Tracking */}
+
+              {(!collapsed || hovered) && (
+                <li className="section-label">TRACKING</li>
+              )}
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/attendance" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/attendance")}
+                >
+                    <div className="emoji-collapsed">✅ </div>
+                  {(!collapsed || hovered) && <span>Attendance</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/ddd" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/")}
+                >
+                    <div className="emoji-collapsed">📊 </div>
+                  {(!collapsed || hovered) && <span>Marks</span>}
+                </div>
+              </li>
+
+              {/* Finance */}
+
+              {(!collapsed || hovered) && (
+                <li className="section-label">FINANCE</li>
+              )}
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/feeManagement" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/feeManagement")}
+                >
+                    <div className="emoji-collapsed">💳 </div>
+
+                  
+                  {(!collapsed || hovered) && <span>Fee Management</span>}
+                </div>
+              </li>
+
+              {/* System */}
+
+              {(!collapsed || hovered) && (
+                <li className="section-label">SYSTEM</li>
+              )}
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/reports" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/reports")}
+                >
+                    <div className="emoji-collapsed">📈 </div>
+
+                  {(!collapsed || hovered) && <span>Reports</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/ss" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/")}
+                >
+                    <div className="emoji-collapsed">⚙️ </div>
+                  {(!collapsed || hovered) && <span>Settings</span>}
+                </div>
+              </li>
             </ul>
           </nav>
         </div>
 
         <div className="sidebar-footer">
-          <div className="logout-section" onClick={handleLogout}>
+          <div className="logout-section" onClick={handleLogOut}>
             <LogoutOutlined />
             {(!collapsed || hovered) && <span>Logout</span>}
           </div>

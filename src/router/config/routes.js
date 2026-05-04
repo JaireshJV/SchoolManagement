@@ -1,10 +1,19 @@
 import { NetWorkError } from "@router/components/NetWorkError";
 import ErrorPage from "@router/components/ErrorPage";
 import UserSignin from "@modules/Auth/Partials/UserSignin";
-import ViewStudent from "@modules/Students/Partials/ViewStudents";
-import { StudentModal } from "@modules/Students/Partials/StudentView";
 import { SuperAdminDashboard } from "@modules/Dashboard/SuperAdminDashboard/Partials/DashboardMainView";
 import { ViewCourseManagement } from "@modules/CourseManagement/ViewCourseManagement";
+import { ClassSchedule } from "@modules/ClassSchedule/Partials/ClassSchedule";
+import { Reports } from "@modules/Reports/Partials/Reports";
+import ViewStudent from "@modules/StudentsView/Partials/ViewStudents";
+import { StudentModal } from "@modules/StudentsView/Partials/StudentView";
+import { Students } from "@modules/Students/Students";
+import { Parents } from "@modules/Parents/Parents";
+import { AttendanceTabs } from "@modules/Attendance";
+import { FeeManagement } from "@modules/FeeManagement/Partials/FeeManagement";
+import VideoManager from "@modules/RecordedVideos/Partials/VideoManager";
+import StudyMaterials from "@modules/StudyMaterial/Partials/StudyMaterial";
+import { Teachers } from "@modules/Teachers/Teacher";
 
 export const anonymous = [
   {
@@ -38,10 +47,10 @@ export const adminAuthenticated = [
     routePath: "/",
     Component: SuperAdminDashboard,
   },
-  // {
-  //   routePath: "/",
-  //   Component: ViewStudent,
-  // },
+  {
+    routePath: "/students",
+    Component: Students,
+  },
   {
     routePath: "/viewStudents",
     Component: ViewStudent,
@@ -50,9 +59,41 @@ export const adminAuthenticated = [
     routePath: "/studentDetails/:id",
     Component: StudentModal,
   },
+  {
+    routePath: "/parents",
+    Component: Parents,
+  },
     {
+    routePath: "/teachers",
+    Component: Teachers ,
+  },
+  {
+    routePath: "/attendance",
+    Component: AttendanceTabs,
+  },
+  {
     routePath: "/courseManagement",
     Component: ViewCourseManagement,
+  },
+  {
+    routePath: "/classSchedule",
+    Component: ClassSchedule,
+  },
+  {
+    routePath: "/feeManagement",
+    Component: FeeManagement,
+  },
+  {
+    routePath: "/videoManager",
+    Component: VideoManager,
+  },
+  {
+    routePath: "/studyMaterial",
+    Component: StudyMaterials,
+  },
+  {
+    routePath: "/reports",
+    Component: Reports,
   },
 ];
 

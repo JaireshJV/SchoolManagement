@@ -8,6 +8,8 @@ import { HiOutlineDocumentText } from "react-icons/hi";
 import { RiLogoutCircleRLine, RiSettingsLine } from "react-icons/ri";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import logoFull from "../assets/images/EduProLogo.png"
+import { logOut } from "@modules/Auth/authSlice";
+import { useDispatch } from "react-redux";
 
 export const HeaderSection = ({
   toggleSidebar,
@@ -22,6 +24,8 @@ export const HeaderSection = ({
   const notificationRef = useRef(null);
   const profileRef = useRef(null);
   const mobileMenuRef = useRef(null);
+
+  const dispatch = useDispatch() ;
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -48,6 +52,14 @@ export const HeaderSection = ({
   const handleViewNotification = () => {
     navigate("/activities");
   };
+
+  const handleLogOut =()=>{
+    dispatch(logOut());
+    localStorage.removeItem("openKeys");
+    localStorage.removeItem('persist');
+    removeSelectedCompanyId();
+    window.location.href = "/signin";
+  }
 
   return (
     <header className={`main-header ${mobileOpen ? "menu-opened" : ""}`}>
@@ -123,8 +135,8 @@ export const HeaderSection = ({
                   className="dropdown-img"
                 />
                 <div>
-                  <h4>Abi Official</h4>
-                  <span>Admin</span>
+                  <h4>Jai Official</h4>
+                  <span>Super Admin</span>
                 </div>
               </div>
 
@@ -138,13 +150,11 @@ export const HeaderSection = ({
                 <li onClick={() => navigate("/profilesetting")}>
                   <RiSettingsLine /> Settings
                 </li>
-              </ul>
 
-              <div className="logout-section">
-                <p onClick={() => alert("Logged Out!")}>
+                <li onClick={handleLogOut} style={{background:"green",color:"gold"}}>
                   <RiLogoutCircleRLine /> Logout
-                </p>
-              </div>
+                </li>
+              </ul>
             </div>
           )}
         </div>

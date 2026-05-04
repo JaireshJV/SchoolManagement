@@ -2,51 +2,61 @@ import styled from "styled-components";
 import { Spin } from "antd";
 
 export const LoginContainer = styled.div`
+
+
+
+
+
+
+
+
+
+// Old 
   min-height: 100vh;
 
-background: linear-gradient(
-  135deg,
-  #39c66a 0%,     /* green + slight yellow shade */
-  #63d166 44%,    /* warm green */
-  #cfe93a 50%,    /* soft blend center */
-  #f6de63 56%,    /* yellow slightly shaded */
-  #e6c94a 100%    /* deeper yellow edge */
-);
+// background: linear-gradient(
+//   135deg,
+//   #39c66a 0%,     /* green + slight yellow shade */
+//   #63d166 44%,    /* warm green */
+//   #cfe93a 50%,    /* soft blend center */
+//   #f6de63 56%,    /* yellow slightly shaded */
+//   #e6c94a 100%    /* deeper yellow edge */
+// );
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  position: relative;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 20px;
+//   position: relative;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(
-        circle at 20% 20%,
-        rgba(220, 38, 38, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 80%,
-        rgba(220, 38, 38, 0.05) 0%,
-        transparent 50%
-      );
-  }
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     background:
+//       radial-gradient(
+//         circle at 20% 20%,
+//         rgba(220, 38, 38, 0.1) 0%,
+//         transparent 50%
+//       ),
+//       radial-gradient(
+//         circle at 80% 80%,
+//         rgba(220, 38, 38, 0.05) 0%,
+//         transparent 50%
+//       );
+//   }
 
-  @keyframes pulse {
-    0% {
-      opacity: 0.3;
-    }
-    100% {
-      opacity: 0.7;
-    }
-  }
+//   @keyframes pulse {
+//     0% {
+//       opacity: 0.3;
+//     }
+//     100% {
+//       opacity: 0.7;
+//     }
+//   }
 `;
 
 export const LoginCard = styled.div`
@@ -223,12 +233,13 @@ export const LogoContainer = styled.div`
 `;
 
 export const FormSection = styled.div`
+width : 100% ;
   flex: 0.8;
   padding: 60px 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+  // background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
   position: relative;
   &::before {
     content: "";
@@ -503,3 +514,54 @@ export const CustomSpinContainer = styled(Spin)`
     color: #dc2626;
   }
 `;
+
+export const StyledLeftPortion = styled.div`
+height: 100vh ;
+background : linear-gradient(160deg,#007A37 0%,#00B050 100%);
+
+
+`
+
+export const LogoPortion = styled.div`
+
+height : 100vh ;
+display : flex ;
+flex-direction : column ;
+
+`
+export const StyledLogo = styled.div`
+
+text-align : center ;
+margin-top : 100px ;
+color : white ;
+
+img{
+height : 100px ;
+width : 100px ;
+}
+
+h2{
+margin-top : 10px ;
+}
+
+p{
+margin-top : 10px ;
+font-size : 12px ;
+font-weight : 200 ;
+
+}
+
+`
+export const StyledFeatures = styled.div`
+
+color : white ;
+margin-top : 100px ;
+padding : 25px ;
+font-size : 12px ;
+font-weight : 300 ;
+
+p{
+padding : 5px ;
+}
+`
+

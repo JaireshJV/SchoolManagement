@@ -1,12 +1,12 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const BarChartAttendance = () => {
+const AdmissionBarChart = () => {
   const data = [45, 38, 50, 28, 42, 15 ,35]; // Mon → Sun
 
   return (
     <div style={styles.card}>
-      <h4 style={styles.title}>Weekly Attendance Overview</h4>
+      <h4 style={styles.title}>Monthly Admissions</h4>
 
       <Chart
         options={{
@@ -17,7 +17,7 @@ const BarChartAttendance = () => {
 
           // Week labels
           xaxis: {
-            categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat","Sun"],
+            categories: ["Jan", "Feb", "March", "April", "May", "June","Jul"],
             labels: {
               show: true,
               style: {
@@ -46,7 +46,7 @@ const BarChartAttendance = () => {
 
           // Dynamic colors
           colors: data.map((val) =>
-            val < 30 ? "#f59e0b" : "#16a34a"
+            val < 30 ? "#bbdfcb71" : "#16a34a"
           ),
 
           tooltip: {
@@ -63,7 +63,7 @@ const BarChartAttendance = () => {
       />
 
       {/* ✅ Custom Legend */}
-      <div style={styles.legend}>
+      {/* <div style={styles.legend}>
         <div style={styles.legendItem}>
           <span style={{ ...styles.dot, background: "#16a34a" }} />
           <span>Present</span>
@@ -73,17 +73,17 @@ const BarChartAttendance = () => {
           <span style={{ ...styles.dot, background: "#f59e0b" }} />
           <span>Low day</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export default BarChartAttendance;
+export default AdmissionBarChart;
 
 const styles = {
   card: {
     width: "250px",
-    background: "white",
+    // background: "white", 
     // padding: "16px",
     borderRadius: "12px",
     fontFamily: "sans-serif"

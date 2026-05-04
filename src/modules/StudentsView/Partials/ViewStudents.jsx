@@ -40,12 +40,11 @@ import { HallTicketView } from "./HallTicket";
 import { AdmitCardPDF } from "./AdmitCardPDF";
 import AddNewStudent from "./AddStudent";
 
-
 const { useBreakpoint } = Grid;
 
 const ViewStudent = () => {
-  console.log('cameeee');
-  
+  console.log("cameeee");
+
   const { fetchImageAsBase64 } = useFetchImageAsBase64();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -355,12 +354,17 @@ const ViewStudent = () => {
   // };
   // console.log(selectedRecord,'selectedRecord');
 
-  const AddStudents =()=>{
+  const AddStudents = () => {
     setModalTitle("ADD STUDENT");
     setWidth(800);
-    setModalContent(<AddNewStudent FormExternalClose={FormExternalClose} fetchStudentDetails={fetchStudentDetails}/>);
+    setModalContent(
+      <AddNewStudent
+        FormExternalClose={FormExternalClose}
+        fetchStudentDetails={fetchStudentDetails}
+      />,
+    );
     showModal();
-  }
+  };
 
   const DownloadHallTicket = (record) => {
     setModalTitle("DOWNLOAD HALLTICKET");
@@ -418,9 +422,14 @@ const ViewStudent = () => {
           />
         </Col>
         <Col span={24} md={12}>
-        <div style={{display:"flex" ,justifyContent:"end"}}>
-  <Button style={{background:"#40bc3e",color:"#f5e607"}} onClick={AddStudents}>Add</Button>
-        </div>
+          <div style={{ display: "flex", justifyContent: "end" }}>
+            <Button
+              style={{ background: "#40bc3e", color: "#f5e607" }}
+              onClick={AddStudents}
+            >
+              Add
+            </Button>
+          </div>
         </Col>
         <Col
           span={24}

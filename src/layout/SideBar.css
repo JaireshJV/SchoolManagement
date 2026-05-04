@@ -31,8 +31,17 @@
   width: 80px;
 }
 
+.sidebar-collapsed .emoji-collapsed{
+margin-left: 8px ;
+font-size: 16px;
+}
+
 .sidebar-hovered {
   width: 240px !important;
+}
+
+.sidebar-hovered .emoji-collapsed {
+margin-left: 4px ;
 }
 
 .sidebar-header {
@@ -74,6 +83,7 @@
   opacity: 1;
   transform: scale(1);
 }
+
 .logo-small {
   opacity: 0;
   transform: scale(0.8);
@@ -155,6 +165,10 @@
   width: 100%;
   color: inherit;
   text-decoration: none;
+  text-align: center;
+  display: flex ;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .sidebar-link.active {
@@ -167,7 +181,8 @@
 /* Default hover */
 .sidebar-menu li:hover {
   background: rgba(186, 186, 186, 0.2);
-  color: #212b36;
+  /* color: #212b36; */
+  color: rgb(193, 214, 109);
 }
 
 .sidebar-menu li:hover .sidebar-link.active {
@@ -363,7 +378,7 @@
   padding-left: 31px !important;
   gap: 10px;
   cursor: pointer;
-  color: #ff0000;
+  color: white !important;
   font-weight: 550;
   font-size: 15px;
   transition: all 0.3s ease;
@@ -372,7 +387,7 @@
 
 .logout-section:hover {
   color: inherit;
-  background: #eaeaeaaf;
+    background: linear-gradient(to right, #009933 25%, #006600 75%);
 
 }
 
@@ -404,13 +419,14 @@
   flex: 1;
   padding: 25px;
   background: #f4f6fa;
+  overflow: auto;
 }
 
 /* 🔹 Section Label */
 .section-label {
   font-size: 10px !important;
   font-weight: 700;
-  color: #4d4d4d;
+  color: #848383;
   letter-spacing: 0.2px;
   padding: 0 10px !important;
   margin: 0 10px !important;

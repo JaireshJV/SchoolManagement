@@ -7,7 +7,7 @@ import { Styles } from '@components/form/CommonProperties';
 const StyledTabs = styled(Tabs)`
 /* margin-bottom: 20px; */
   /* .ant-tabs-tab {
-    color: #000 ;
+    color: #9ca2ac ;
     &:hover {
       color: ${THEME.primary}; 
     }
@@ -17,12 +17,13 @@ const StyledTabs = styled(Tabs)`
   }
   &.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
     color:  ${THEME.black};
-    background-color:  ${THEME.primary};
+    background-color:  ${THEME.GREEN_NOW};
     padding:0 10px;
+    text-decoration : 2px solid red !important ;
   } */
   .ant-tabs .ant-tabs-tab {
     padding: 0 12px 0 0 !important;
-    border-right: 2px solid !important;
+    // border-right: 2px solid !important;
   }
   .ant-tabs-ink-bar {
     background:${Styles.tabActiveBarColor};
@@ -33,6 +34,11 @@ const StyledTabs = styled(Tabs)`
   .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
     color:${Styles.tabActiveBarColor};
   }
+
+  .ant-tabs .ant-tabs-tab {
+  border-left : none !important ;
+}
+
 `;
 const CustomTabs = ({ items, defaultActiveKey, activeKey, onChange }) => {
 

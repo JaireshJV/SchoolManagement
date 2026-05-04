@@ -8,10 +8,11 @@ import {
 } from "../style";
 import BarChartAttendance from "./BarChartAttendance";
 import ProgressBar from "./ProgressBar";
+import { useNavigate } from "react-router-dom";
 
 export const SuperAdminDashboard = () => {
 
-    console.log('cameeeee');
+const navigate = useNavigate() ;
     
   const carddata = [
     {
@@ -92,8 +93,8 @@ export const SuperAdminDashboard = () => {
               </Col>
               <Col span={24} md={12}>
                 <div className="header-right">
-                  <button className="quick-report">📋Quick Report</button>
-                  <button className="add-student">+ Add Student</button>
+                  <button className="quick-report" onClick={()=>navigate('/reports')}>📋Quick Report</button>
+                  <button className="add-student" onClick={()=>navigate('/students')}>+ Add Student</button>
                 </div>
               </Col>
             </CustomRow>

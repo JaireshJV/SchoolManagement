@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Spin } from "antd";
+import { Col, Form, Spin } from "antd";
 import {
   LoginContainer,
   LoginCard,
@@ -18,16 +18,21 @@ import {
   PageLoadingTitle,
   PageLoadingSubtitle,
   CustomSpinContainer,
+  StyledLeftPortion,
+  LogoPortion,
+  StyledFeatures,
+  StyledLogo,
 } from "./Style";
 import {
-  ArrowRightOutlined,
   EyeFilled,
   LockFilled,
   MailFilled,
   LoadingOutlined,
 } from "@ant-design/icons";
 import { FiEyeOff } from "react-icons/fi";
-import Login_Img from "@assets/images/logo_endless_pvtltd.png";
+import Login_Img from "@assets/images/EduProLogo.png";
+import { CustomRow } from "@components/others";
+import { CustomTag } from "@components/form";
 
 const NewSignInForm = ({ handleSignIn, loading, pageLoading = false }) => {
   const [form] = Form.useForm();
@@ -66,182 +71,167 @@ const NewSignInForm = ({ handleSignIn, loading, pageLoading = false }) => {
 
   return (
     <LoginContainer>
-      <LoginCard>
+      <CustomRow>
+        <Col span={24} md={15}>
+          <StyledLeftPortion>
+            <LogoPortion>
+              <CustomRow>
+                <Col span={24} md={24}>
+                  <StyledLogo>
+                    <img src={Login_Img} alt="Edu Pro" />
+                    <h2>EduPro Institute <br/> Management System</h2>
+                    <p>Complete ERP for modern institutes</p>
+                  </StyledLogo>
+                </Col>
+                <Col span={24} md={24}>
+                  <StyledFeatures>
+                    <div>
+                    <p><CustomTag title={'🎓'} style={{borderRadius:"50%"}} color={'#9d9d9d6a'}/> Student & Parent Portal</p>
+                    <p><CustomTag title={'📊'} style={{borderRadius:"50%"}} color={'#9d9d9d6a'}/> Live Attendance & Reports</p>
+                    <p><CustomTag title={'💳 '} style={{borderRadius:"50%"}} color={'#9d9d9d6a'}/> Fee Management & Alerts</p>
+                    <p><CustomTag title={'📹 '} style={{borderRadius:"50%"}} color={'#9d9d9d6a'}/> Recorded Classes & Materials</p>
+                    </div>
+                  </StyledFeatures>
+                </Col>
+              </CustomRow>
+            </LogoPortion>
+          </StyledLeftPortion>
+        </Col>
 
-        <FormSection>
-          <LogoContainer>
-            <div
-              className="logo-icon"
-              style={{
-                transform: "scale(1.1)",
-                transition: "transform 0.3s ease",
-              }}
-            >
-              <img
-                src={Login_Img}
-                alt="Endless Logo"
-                style={{
-                  width: "60%",
-                  height: "60%",
-                  objectFit: "contain",
-                }}
-              />
-            </div>
-
-            {/* <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "12px",
-              }}
-            >
-            </div> */}
-          </LogoContainer>
-          <FormContainer>
-            <CustomSpinContainer
-              spinning={loading}
-              indicator={antIcon}
-              tip="Signing you in..."
-            >
-              <div className="form-header" style={{ marginBottom: "20px",marginTop:"15px" }}>
-                <h2 >
-                  Login
-                </h2>
-              </div>
-
-              <Form
-                form={form}
-                onFinish={onFinish}
-                layout="vertical"
-                className="login-form"
-              >
-                <Form.Item
-                  label="Email Address"
-                  name="email"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please enter your email address",
-                    },
-                    {
-                      type: "email",
-                      message: "Please enter a valid email address",
-                    },
-                  ]}
-                >
-                  <InputWrapper>
-                    <InputIcon>
-                      <MailFilled />
-                    </InputIcon>
-                    <StyledInput
-                      placeholder="Enter your email"
-                      name="email"
-                      type="email"
-                      onChange={handleInputChange}
-                      disabled={loading}
-                    />
-                  </InputWrapper>
-                </Form.Item>
-
-                <Form.Item
-                  label="Password"
-                  name="password"
-                  rules={[
-                    { required: true, message: "Please enter your password" },
-                    // { min: 6, message: 'Password must be at least 6 characters' }
-                  ]}
-                >
-                  <InputWrapper>
-                    <InputIcon>
-                      <LockFilled />
-                    </InputIcon>
-                    <StyledInput
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
-                      name="password"
-                      onChange={handleInputChange}
-                      disabled={loading}
-                    />
-                    <PasswordToggle
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      disabled={loading}
-                    >
-                      {showPassword ? (
-                        <FiEyeOff size={18} />
-                      ) : (
-                        <EyeFilled size={18} />
-                      )}
-                    </PasswordToggle>
-                  </InputWrapper>
-                </Form.Item>
-
-                <StyledButton
-                  type="primary"
-                  htmlType="submit"
-                  loading={loading}
-                  className="login-button"
-                  style={{
-                    marginTop: "20px",
-                    height: "50px",
-                    fontSize: "16px",
-                    fontWeight: "600",
-                  }}
-                >
-                  {loading ? "Logging In..." : "Login"}
-                  {/* {!loading && <ArrowRightOutlined />} */}
-                </StyledButton>
-              </Form>
-
+        <Col span={24} md={9}>
+          <FormSection>
+            <LogoContainer>
               <div
+                className="logo-icon"
                 style={{
-                  textAlign: "center",
-                  marginTop: "24px",
-                  fontSize: "12px",
-                  color: "#737373",
+                  transform: "scale(1.1)",
+                  transition: "transform 0.3s ease",
                 }}
               >
-                @ 2026 Endless C Pvt Ltd. All rights reserved.
+                <img
+                  src={Login_Img}
+                  alt="Edu Pro"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    objectFit: "contain",
+                  }}
+                />
               </div>
-
-              {/* <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  marginTop: "20px",
-                  color: "#999",
-                  fontSize: "12px",
-                }}
+            </LogoContainer>
+            <FormContainer>
+              <CustomSpinContainer
+                spinning={loading}
+                indicator={antIcon}
+                tip="Signing you in..."
               >
                 <div
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "linear-gradient(135deg, #dc2626, #991b1b)",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  className="form-header"
+                  style={{ marginBottom: "20px", marginTop: "15px" }}
                 >
-                  <span
+                  <h2>Login</h2>
+                  <p>Institute Management Portal</p>
+                </div>
+
+                <Form
+                  form={form}
+                  onFinish={onFinish}
+                  layout="vertical"
+                  className="login-form"
+                >
+                  <Form.Item
+                    label="Email Address"
+                    name="email"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter your email address",
+                      },
+                      {
+                        type: "email",
+                        message: "Please enter a valid email address",
+                      },
+                    ]}
+                  >
+                    <InputWrapper>
+                      <InputIcon>
+                        <MailFilled />
+                      </InputIcon>
+                      <StyledInput
+                        placeholder="Enter your email"
+                        name="email"
+                        type="email"
+                        onChange={handleInputChange}
+                        disabled={loading}
+                      />
+                    </InputWrapper>
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Password"
+                    name="password"
+                    rules={[
+                      { required: true, message: "Please enter your password" },
+                      // { min: 6, message: 'Password must be at least 6 characters' }
+                    ]}
+                  >
+                    <InputWrapper>
+                      <InputIcon>
+                        <LockFilled />
+                      </InputIcon>
+                      <StyledInput
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter your password"
+                        name="password"
+                        onChange={handleInputChange}
+                        disabled={loading}
+                      />
+                      <PasswordToggle
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        disabled={loading}
+                      >
+                        {showPassword ? (
+                          <FiEyeOff size={18} />
+                        ) : (
+                          <EyeFilled size={18} />
+                        )}
+                      </PasswordToggle>
+                    </InputWrapper>
+                  </Form.Item>
+
+                  <StyledButton
+                    type="primary"
+                    htmlType="submit"
+                    loading={loading}
+                    className="login-button"
                     style={{
-                      color: "white",
-                      fontSize: "10px",
-                      fontWeight: "bold",
+                      marginTop: "20px",
+                      height: "50px",
+                      fontSize: "16px",
+                      fontWeight: "600",
                     }}
                   >
-                    O
-                  </span>
+                    {loading ? "Signing In..." : "Sign In →"}
+                    {/* {!loading && <ArrowRightOutlined />} */}
+                  </StyledButton>
+                </Form>
+
+                <div
+                  style={{
+                    textAlign: "center",
+                    marginTop: "24px",
+                    fontSize: "12px",
+                    color: "#737373",
+                  }}
+                >
+                  © 2026 EduPro Institute · All rights reserved
                 </div>
-                <span>Powered by ENDLESS</span>
-              </div> */}
-            </CustomSpinContainer>
-          </FormContainer>
-        </FormSection>
-      </LoginCard>
+              </CustomSpinContainer>
+            </FormContainer>
+          </FormSection>
+        </Col>
+      </CustomRow>
     </LoginContainer>
   );
 };
