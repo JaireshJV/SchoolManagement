@@ -108,6 +108,7 @@ const navigate = useNavigate() ;
               style={{
                 borderTop: `3px solid ${data.color}`,
               }}
+              key={data.key}
             >
               <p className="emoji">{data.emoji}</p>
               <p>{data.label}</p>

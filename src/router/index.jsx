@@ -3,6 +3,7 @@ import AuthRouter from '@router/components/AuthRouter'
 import { Routes, Route } from 'react-router'
 
 const Routers = ({ token }) => {
+console.log(token,'tokentoken');
 
     const isAuthenticated = Boolean(token) ;
     return (

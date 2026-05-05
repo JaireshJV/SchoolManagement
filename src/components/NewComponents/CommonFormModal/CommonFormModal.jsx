@@ -48,15 +48,12 @@ const renderFields = (field) => {
 
     case "file":
       return (
-        <Upload
-        beforeUpload={()=> false}
-        maxCount={1}
-        >
-          <Button icon={<UploadOutlined/>}>
+        <Upload beforeUpload={() => false} maxCount={1}>
+          <Button icon={<UploadOutlined />}>
             {field.placeholder || "Upload file"}
           </Button>
         </Upload>
-      )
+      );
 
     case "password":
       return <Input.Password placeholder={field.placeholder} />;
@@ -66,95 +63,126 @@ const renderFields = (field) => {
   }
 };
 
-export const CommonForm = ({ name, fields = [], onSubmit, onClose, mode = "", initialValues = {} }) => {
+export const CommonForm = ({
+  name,
+  fields = [],
+  onSubmit,
+  onClose,
+  mode = "",
+  initialValues = {},
+}) => {
   const [form] = Form.useForm();
 
-  const handleReset = ()=>{
+  const handleReset = () => {
     form.resetFields();
-  }
+  };
 
-  const handleFinish = (values)=>{
-    if(mode === "edit"){
-        console.log(values, "Edited Values");
-        onSubmit({ ...initialValues, ...values});
-    }else{
-        onSubmit(values);
+  const handleFinish = (values) => {
+    if (mode === "edit") {
+      console.log(values, "Edited Values");
+      onSubmit({ ...initialValues, ...values });
+    } else {
+      onSubmit(values);
     }
   };
 
-const formatFile = (file) => {
-  if (!file) return [];
+  const formatFile = (file) => {
+    if (!file) return [];
 
-  // already formatted (edit again case)
-  if (Array.isArray(file)) return file;
+    // already formatted (edit again case)
+    if (Array.isArray(file)) return file;
 
-  // string (URL from backend)
-  if (typeof file === "string") {
-    return [
-      {
-        uid: `${Date.now()}`,
-        name: file.split("/").pop() || "file",
-        status: "done",
-        url: file,
-      },
-    ];
-  }
+    // string (URL from backend)
+    if (typeof file === "string") {
+      return [
+        {
+          uid: `${Date.now()}`,
+          name: file.split("/").pop() || "file",
+          status: "done",
+          url: file,
+        },
+      ];
+    }
 
-  return [];
-};
+    return [];
+  };
 
+  useEffect(() => {
+    if (mode === "edit" && initialValues) {
+      const formattedValues = { ...initialValues };
 
-useEffect(() => {
-  if (mode === "edit" && initialValues) {
-    const formattedValues = { ...initialValues };
+      fields.forEach((field) => {
+        // ✅ handle select object → id
+        if (
+          field.type === "select" &&
+          typeof initialValues[field.name] === "object"
+        ) {
+          formattedValues[field.name] = initialValues[field.name]?.id;
+        }
 
-    fields.forEach((field) => {
-      // ✅ handle select object → id
-      if (field.type === "select" && typeof initialValues[field.name] === "object") {
-        formattedValues[field.name] = initialValues[field.name]?.id;
-      }
+        // ✅ handle file fields dynamically
+        if (field.type === "file") {
+          formattedValues[field.name] = formatFile(initialValues[field.name]);
+        }
+      });
 
-      // ✅ handle file fields dynamically
-      if (field.type === "file") {
-        formattedValues[field.name] = formatFile(initialValues[field.name]);
-      }
-    });
-
-    form.setFieldsValue(formattedValues);
-  } else {
-    form.resetFields();
-  }
-}, [mode, initialValues, fields, form]);
-
+      form.setFieldsValue(formattedValues);
+    } else {
+      form.resetFields();
+    }
+  }, [mode, initialValues, fields, form]);
 
   return (
     <Card className="form-card">
       <>
-        <div className="formHead">
-        <h3>
-          <PlusOutlined /> {mode === "edit" ? "Edit" : "Add New"} {name}
-        </h3>
-        <CloseOutlined className="close-btn" onClick={onClose}/>
-        </div>
+        <CustomRow space={[12,12]} style={{marginBottom:"30px"}}>
+          <Col span={24} md={18}>
+            <h3>
+              <PlusOutlined /> {mode === "edit" ? "Edit" : "Add New"} {name}
+            </h3>
+          </Col>
+          <Col span={24} md={6} style={{textAlign:"end"}}>
+            <CloseOutlined className="close-btn" onClick={onClose} />
+            <h3></h3>
+          </Col>
+        </CustomRow>
 
-          <Form form={form} className="form" layout="vertical" onFinish={handleFinish}>
-            <CustomRow space={[12, 12]}>
-              {fields.map((field, index) => (
-                <Col span={24} md={8} key={index}>
-                  <Form.Item name={field.name} label={field.label} {...(field.type === "file" && {
-                    valuePropName:"fileList", getValueFromEvent:(e) => Array.isArray(e) ? e : e?.fileList || []
-                  })}>
-                    {renderFields(field)}
-                  </Form.Item>
-                </Col>
-              ))}
-            </CustomRow>
+        <Form
+          form={form}
+          className="form"
+          layout="vertical"
+          onFinish={handleFinish}
+        >
+          <CustomRow space={[12, 12]}>
+            {fields.map((field, index) => (
+              <Col span={24} md={8} key={index}>
+                <Form.Item
+                  name={field.name}
+                  label={field.label}
+                  {...(field.type === "file" && {
+                    valuePropName: "fileList",
+                    getValueFromEvent: (e) =>
+                      Array.isArray(e) ? e : e?.fileList || [],
+                  })}
+                >
+                  {renderFields(field)}
+                </Form.Item>
+              </Col>
+            ))}
+          </CustomRow>
 
-            <div className="formFoot">
-              <Button style={{backgroundColor: "#00b050" }} htmlType="submit">{mode === "edit" ? "Update" : "Save"} {name}</Button>
-              <Button style={{backgroundColor: "#ed1c24" }} onClick={handleReset}>Reset</Button>
-            </div>
-          </Form>
+          <div className="formFoot">
+            <Button style={{ backgroundColor: "#00b050" }} htmlType="submit">
+              {mode === "edit" ? "Update" : "Save"} {name}
+            </Button>
+            <Button
+              style={{ backgroundColor: "#ed1c24" }}
+              onClick={handleReset}
+            >
+              Reset
+            </Button>
+          </div>
+        </Form>
       </>
     </Card>
   );

@@ -205,9 +205,9 @@ const DashboardLayout = ({ children }) => {
               <li>
                 <div
                   className={`sidebar-link ${
-                    location.pathname === "/nnn" ? "active" : ""
+                    location.pathname === "/batches" ? "active" : ""
                   }`}
-                  onClick={() => handleNavigate("/")}
+                  onClick={() => handleNavigate("/batches")}
                 >
                     <div className="emoji-collapsed">🗂️ </div>
                   

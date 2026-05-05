@@ -2,7 +2,7 @@ import { NetWorkError } from "@router/components/NetWorkError";
 import ErrorPage from "@router/components/ErrorPage";
 import UserSignin from "@modules/Auth/Partials/UserSignin";
 import { SuperAdminDashboard } from "@modules/Dashboard/SuperAdminDashboard/Partials/DashboardMainView";
-import { ViewCourseManagement } from "@modules/CourseManagement/ViewCourseManagement";
+import { CourseManagement } from "@modules/CourseManagement/CourseManagement";
 import { ClassSchedule } from "@modules/ClassSchedule/Partials/ClassSchedule";
 import { Reports } from "@modules/Reports/Partials/Reports";
 import ViewStudent from "@modules/StudentsView/Partials/ViewStudents";
@@ -14,6 +14,7 @@ import { FeeManagement } from "@modules/FeeManagement/Partials/FeeManagement";
 import VideoManager from "@modules/RecordedVideos/Partials/VideoManager";
 import StudyMaterials from "@modules/StudyMaterial/Partials/StudyMaterial";
 import { Teachers } from "@modules/Teachers/Teacher";
+import { Batches } from "@modules/Batches/Batches";
 
 export const anonymous = [
   {
@@ -67,13 +68,17 @@ export const adminAuthenticated = [
     routePath: "/teachers",
     Component: Teachers ,
   },
+     {
+    routePath: "/batches",
+    Component: Batches ,
+  },
   {
     routePath: "/attendance",
     Component: AttendanceTabs,
   },
   {
     routePath: "/courseManagement",
-    Component: ViewCourseManagement,
+    Component: CourseManagement ,
   },
   {
     routePath: "/classSchedule",

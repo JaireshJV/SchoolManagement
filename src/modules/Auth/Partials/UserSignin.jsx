@@ -12,6 +12,7 @@ import NewSignInForm from './NewSignInForm'
 import errorHandler from '@request/errorHandler'
 import axios from 'axios'
 import { setAuthHeader } from '@utils/authUtils'
+import { APIURLS } from 'src/api/urls'
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -47,7 +48,7 @@ const UserSignin = () => {
 
     setLoading(true);
     try {
-      const response = await baseRequest.post(`/login`, data);
+      const response = await baseRequest.post(`${APIURLS.LOGIN}`, data);
       const authData = response?.data;
       console.log(authData,'authData');
       

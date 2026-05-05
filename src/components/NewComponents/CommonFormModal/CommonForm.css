@@ -2,16 +2,16 @@
     padding: 15px !important;
 }
 
-.formHead{
+/* .formHead{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid rgb(222, 220, 220);
-}
+} */
 
-.formHead .close-btn{
+.close-btn{
     background-color: #ed1c24;
     padding: 4px;
     border-radius: 5px;

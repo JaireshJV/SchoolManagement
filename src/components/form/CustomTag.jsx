@@ -8,10 +8,10 @@ const StyledTag = styled(AntdTag)`
     }
 `
 
-const CustomTag = ({ bordered, color, title, style }) => {
+const CustomTag = ({ bordered, color, title, style , onClick }) => {
 
     return (
-        <StyledTag style={style} bordered={bordered} color={color}>
+        <StyledTag style={style} bordered={bordered} color={color} onClick={onClick}>
             <h6>
                 {title}
             </h6>

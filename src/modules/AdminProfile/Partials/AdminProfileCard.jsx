@@ -14,7 +14,7 @@ import {
     StyledProfileContainer,
     ProfileImageSection,
 } from '../style';
-import { APIURLS } from '@request/apiUrls/urls';
+import { APIURLS } from 'src/api/urls';
 import { useFetchImageAsBase64 } from '@utils/fetchImageAsBase64';
 
 

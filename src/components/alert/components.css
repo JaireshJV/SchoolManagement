@@ -1,0 +1,114 @@
+/* <========= Delete Modal Component =========>*/
+.ant-modal-header {
+  display: flex;
+  justify-content: center;
+}
+
+.ant-modal-title {
+  width: 100%;
+  text-align: center;
+}
+
+
+
+/* <========= Alert Component =========>*/
+.alert-contianer{
+    position: fixed;
+    top: 12%;
+    left: 35%;
+    width: 350px;
+    height: 430px;
+    background: #fefefc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease;
+    box-shadow: 0px 0px 6px 1px rgb(167, 167, 167);
+}
+
+.alert-box {
+    padding: 25px;
+    text-align: center;
+}
+
+.alert-img {
+    width: 100%;
+}
+
+.alert-box h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-family: sans-serif;
+    letter-spacing: -1px !important;
+}
+
+.alert-box p {
+    font-size: 18px;
+    opacity: 0.8;
+    font-weight: 600;
+    font-family: sans-serif;
+    letter-spacing: -1px !important;
+    margin: 5px;
+}
+
+.alert-box .sub{
+    font-size: 12px;
+}
+
+.alert-box button {
+    margin: 10px 20px;
+    padding: 10px 30px;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.success h2{
+    color: #00a63e;
+}
+
+.success button{
+    background: #00a63e;
+}
+
+.error h2{
+   color: #fb2c36;
+}
+
+.error button{
+    background: #fb2c36;
+}
+
+.warn .img{
+    height: 140px;
+    width: 280px;
+    background: #ffcc02 !important;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.warn .alert-img{
+    width: 55%;
+}
+
+
+.warn h2{
+   color: #1676FC;
+}
+
+.warn button{
+    background: #fb2c36;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
