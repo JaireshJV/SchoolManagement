@@ -1,6 +1,138 @@
+// Course Fields
+
+export const courseFields = [
+  {
+    name: "courseName",
+    label: "Course Name",
+    type: "text",
+    placeholder: "Enter Course Name",
+  },
+  {
+    name: "courseCategory",
+    label: "Course Category",
+    type: "text",
+    placeholder: "Enter Course Category",
+  },
+  {
+    name: "description",
+    label: "Description",
+    type: "textarea",
+    placeholder: "Enter Course Description",
+  },
+  {
+    name: "durationMonths",
+    label: "Duration (Months)",
+    type: "number",
+    placeholder: "Enter Duration in Months",
+  },
+  {
+    name: "feeAmount",
+    label: "Fee Amount",
+    type: "number",
+    placeholder: "Enter Fee Amount",
+  },
+  {
+    name: "mode",
+    label: "Mode",
+    type: "select",
+    options: [
+      { label: "Online", value: "online" },
+      { label: "Offline", value: "offline" },
+      { label: "Hybrid", value: "hybrid" },
+    ],
+    placeholder: "Select Mode",
+  },
+  {
+    name: "centerName",
+    label: "Center Name",
+    type: "text",
+    placeholder: "Enter Center Name",
+  },
+  {
+    name: "maxStudents",
+    label: "Max Students",
+    type: "number",
+    placeholder: "Enter Maximum Students",
+  },
+  //   {
+  //   name: "status",
+  //   label: "Status",
+  //   type: "select",
+  //   options: [
+  //     { label: "Active", value: "active" },
+  //     { label: "Inactive", value: "inactive" },
+  //   ],
+  // },
+];
+
+// Batch fields
+
+export const batchFields = (options = []) => [
+  {
+    name: "courseId",
+    label: "Course",
+    type: "select",
+    options: options,
+    placeholder: "Select Course",
+  },
+  {
+    name: "batchName",
+    label: "Batch Name",
+    type: "text",
+    placeholder: "Enter Batch Name",
+  },
+  {
+    name: "batchCode",
+    label: "Batch Code",
+    type: "text",
+    placeholder: "Enter Batch Code",
+  },
+  {
+    name: "timing",
+    label: "Timing",
+    type: "text",
+    placeholder: "Enter Batch Timing (e.g. 10:00 AM - 12:00 PM)",
+  },
+  {
+    name: "mode",
+    label: "Mode",
+    type: "select",
+    options: [
+      { label: "Online", value: "online" },
+      { label: "Offline", value: "offline" },
+      { label: "Hybrid", value: "hybrid" },
+    ],
+    placeholder: "Select Mode",
+  },
+  {
+    name: "centerName",
+    label: "Center Name",
+    type: "text",
+    placeholder: "Enter Center Name",
+  },
+  {
+    name: "startDate",
+    label: "Start Date",
+    type: "date",
+    placeholder: "Select Start Date",
+  },
+  {
+    name: "endDate",
+    label: "End Date",
+    type: "date",
+    placeholder: "Select End Date",
+  },
+  {
+    name: "maxStudents",
+    label: "Max Students",
+    type: "number",
+    placeholder: "Enter Maximum Students",
+  },
+];
+
 // Student Fields
 
-export const studentFields = [
+export const studentFields = (courseoption = [], batchoption = []) => [
   {
     name: "admissionNo",
     label: "ADMISSION NO",
@@ -21,7 +153,7 @@ export const studentFields = [
     options: [
       { label: "Male", value: "male" },
       { label: "Female", value: "female" },
-      { label: "Other", value: "other" },
+      { label: "Others", value: "others" },
     ],
   },
   {
@@ -129,18 +261,18 @@ export const studentFields = [
 
   // 📚 Course & Batch (Objects)
   {
-    name: "course",
+    name: "courseId",
     label: "COURSE",
     type: "select",
     placeholder: "Select course",
-    options: [], // 👈 fill dynamically from API
+    options: courseoption, // 👈 fill dynamically from API
   },
   {
-    name: "batch",
+    name: "batchId",
     label: "BATCH",
     type: "select",
     placeholder: "Select batch",
-    options: [], // 👈 fill dynamically from API
+    options: batchoption, // 👈 fill dynamically from API
   },
 
   // 📄 Documents
@@ -193,6 +325,7 @@ export const teacherFields = [
     options: [
       { label: "Male", value: "male" },
       { label: "Female", value: "female" },
+      { label: "Others", value: "others" },
     ],
   },
   {
@@ -293,134 +426,10 @@ export const teacherFields = [
     name: "status",
     label: "STATUS",
     type: "select",
-    placeholder:"Select status",
+    placeholder: "Select status",
     options: [
       { label: "Active", value: "Active" },
       { label: "Inactive", value: "Inactive" },
     ],
   },
 ];
-
-// Course Fields 
-
-export const courseFields = [
-  {
-    name: "courseName",
-    label: "Course Name",
-    type: "text",
-    placeholder: "Enter Course Name",
-  },
-  {
-    name: "courseCategory",
-    label: "Course Category",
-    type: "text",
-    placeholder: "Enter Course Category",
-  },
-  {
-    name: "description",
-    label: "Description",
-    type: "textarea",
-    placeholder: "Enter Course Description",
-  },
-  {
-    name: "durationMonths",
-    label: "Duration (Months)",
-    type: "number",
-    placeholder: "Enter Duration in Months",
-  },
-  {
-    name: "feeAmount",
-    label: "Fee Amount",
-    type: "number",
-    placeholder: "Enter Fee Amount",
-  },
-  {
-    name: "mode",
-    label: "Mode",
-    type: "select",
-    options: [
-      { label: "Online", value: "online" },
-      { label: "Offline", value: "offline" },
-      { label: "Hybrid", value: "hybrid" },
-    ],
-    placeholder: "Select Mode",
-  },
-  {
-    name: "centerName",
-    label: "Center Name",
-    type: "text",
-    placeholder: "Enter Center Name",
-  },
-  {
-    name: "maxStudents",
-    label: "Max Students",
-    type: "number",
-    placeholder: "Enter Maximum Students",
-  },
-];
-
-// Batch fields 
-
-export const batchFields =(options = [])=> [
-  
-  {
-    name: "courseId",
-    label: "Course",
-    type: "select", 
-    options :options ,
-    placeholder: "Enter Course ID",
-  },
-  {
-    name: "batchName",
-    label: "Batch Name",
-    type: "text",
-    placeholder: "Enter Batch Name",
-  },
-  {
-    name: "batchCode",
-    label: "Batch Code",
-    type: "text",
-    placeholder: "Enter Batch Code",
-  },
-  {
-    name: "timing",
-    label: "Timing",
-    type: "text",
-    placeholder: "Enter Batch Timing (e.g. 10:00 AM - 12:00 PM)",
-  },
-  {
-    name: "mode",
-    label: "Mode",
-    type: "select",
-    options: [
-      { label: "Online", value: "online" },
-      { label: "Offline", value: "offline" },
-      { label: "Hybrid", value: "hybrid" },
-    ],
-    placeholder: "Select Mode",
-  },
-  {
-    name: "centerName",
-    label: "Center Name",
-    type: "text",
-    placeholder: "Enter Center Name",
-  },
-  {
-    name: "startDate",
-    label: "Start Date",
-    type: "date",
-    placeholder: "Select Start Date",
-  },
-  {
-    name: "endDate",
-    label: "End Date",
-    type: "date",
-    placeholder: "Select End Date",
-  },
-  {
-    name: "maxStudents",
-    label: "Max Students",
-    type: "number",
-    placeholder: "Enter Maximum Students",
-  },
-]

@@ -15,6 +15,7 @@ import VideoManager from "@modules/RecordedVideos/Partials/VideoManager";
 import StudyMaterials from "@modules/StudyMaterial/Partials/StudyMaterial";
 import { Teachers } from "@modules/Teachers/Teacher";
 import { Batches } from "@modules/Batches/Batches";
+import { Marks } from "@modules/Marks/Marks";
 
 export const anonymous = [
   {
@@ -95,6 +96,10 @@ export const adminAuthenticated = [
   {
     routePath: "/studyMaterial",
     Component: StudyMaterials,
+  },
+    {
+    routePath: "/marks",
+    Component: Marks,
   },
   {
     routePath: "/reports",

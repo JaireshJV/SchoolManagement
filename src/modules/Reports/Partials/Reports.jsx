@@ -46,7 +46,7 @@ export const Reports = () => {
   return (
     <StyledReports>
       <h4>Reports & Analytics</h4>
-      <CustomRow space={[12, 12]}>
+      <CustomRow space={[10]}>
         {reportcards.map((cards) => (
           <Col span={24} md={8}>
             <StyledCard>

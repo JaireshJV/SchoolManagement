@@ -18,6 +18,13 @@ export const HeaderCard = styled(Card)`
     align-items: center;
   }
 
+  @media (max-width:784px){
+
+  .header-right{
+  margin-top : 5px ;
+  }
+  }
+  
   .quick-report {
     border-radius: 7px;
     background: green;

@@ -1,28 +1,77 @@
-import { CustomRow } from "@components/others";
+import { CustomModal, CustomRow } from "@components/others";
 import { Col } from "antd";
 import { CourseBoxes, NewCourse, StyledCourseManagement } from "./style";
 import { CustomTag } from "@components/form";
 import { CommonForm } from "@components/NewComponents/CommonFormModal/CommonFormModal";
 import { useEffect, useState } from "react";
-import { courseFields } from "@modules/FieldColumns/InputFields";
-import { baseRequest } from "@request/request";
-import { APIURLS } from "src/api/urls";
 import { getCourses } from "src/api/getReq";
 import { PostCourse } from "src/api/postReq";
+import { UpdateCourse } from "src/api/updateReq";
 import { DeleteCourse } from "src/api/deleteReq";
+import { Delete } from "@components/Delete/Delete";
+import { courseFields } from "@components/FieldColumns/InputFields";
+import { CourseDetails } from "./CourseDetails";
 
 export const CourseManagement = () => {
   const [openForm, setForm] = useState(false);
   const [mode, setMode] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
   const [dataSource, setDataSource] = useState([]);
-  const [trigger, setTrigger] = useState(false);
 
+  const [deleteId, setDeleteId] = useState(null);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteService, setDeleteService] = useState(null);
+
+  // ====== Modal States ========
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalContent, setModalContent] = useState(null);
+  const [width, setWidth] = useState(0);
+
+    // ===== Modal Functions =====
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+    setTimeout(() => {
+      setModalContent(null);
+    }, 300);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    setTimeout(() => {
+      setModalContent(null);
+    }, 300);
+  };
+
+  // ===== OTHER FUNCTIONS =====
   const handleAdd = () => {
     setMode("add");
-    setTrigger(true);
     setSelectedRow(null);
     setForm(true);
+  };
+
+    const handleView = (record) => {
+      setModalTitle("Course Details");
+      setWidth(600);
+      setModalContent(<CourseDetails record={record} />);
+      showModal();
+    };
+
+  const handleEdit = (record) => {
+    setMode("edit");
+    setSelectedRow(record);
+    setForm(true);
+  };
+
+  const handleDelete = (id, service) => {
+    console.log("HanldeDelete Clicked");
+    setDeleteId(id);
+    setDeleteService(() => service);
+    setOpenDelete(true);
   };
 
   const getData = async () => {
@@ -34,11 +83,9 @@ export const CourseManagement = () => {
     getData();
   }, []);
 
-  console.log(dataSource, "datasource");
-
   const handleCourseSubmit = async (data) => {
     if (mode === "edit") {
-      console.log("Updating...", data);
+      await UpdateCourse(data.courseId, data);
     } else {
       await PostCourse(data);
       console.log("Creating...", data);
@@ -49,12 +96,6 @@ export const CourseManagement = () => {
     setForm(false);
     setMode("add");
     setSelectedRow(null);
-  };
-
-  const handleEdit = (record) => {
-    setMode("edit");
-    setSelectedRow(record);
-    setForm(true);
   };
 
   const course = [
@@ -116,11 +157,6 @@ export const CourseManagement = () => {
     );
   }
 
-  const handleDelete = async(id) => {
-    await DeleteCourse(id);
-    await getData();
-  };
-
   return (
     <StyledCourseManagement>
       <CustomRow space={[12, 12]}>
@@ -155,51 +191,80 @@ export const CourseManagement = () => {
       </CustomRow>
 
       <CustomRow>
-        {dataSource?.map((element) => (
+        {dataSource?.map((element) => (<>
+          {element.status !== "INACTIVE" && (
           <Col span={24} md={8}>
-            <CourseBoxes key={element?.courseId}>
-              <div
-                className="top-box"
-                style={{ background: `${element.color}` }}
-              >
-                {/* {element.emoji} */}
-              </div>
-              <h5>{element?.courseName}</h5>
-              <p>{element?.courseCategory}</p>
-              {/* {element.description} */}
-              <div className="tags">
-                <CustomTag
-                  title={`${element?.durationMonths} Months`}
-                  // color={element.color}
-                  // style={{ color: darkenColor(element.color, 50) }}
-                />
-                {/* <CustomTag
+            
+              <CourseBoxes key={element?.courseId}>
+                <div
+                  className="top-box"
+                  style={{ background: `${element.color}` }}
+                >
+                  {/* {element.emoji} */}
+                </div>
+                <h5>{element?.courseName}</h5>
+                <p>{element?.courseCategory}</p>
+                {/* {element.description} */}
+                <div className="tags">
+                  <CustomTag
+                    title={`${element?.durationMonths} Months`}
+                    // color={element.color}
+                    // style={{ color: darkenColor(element.color, 50) }}
+                  />
+                  {/* <CustomTag
                   title={element.faculty}
                   color={element.color}
                   style={{ color: darkenColor(element.color, 50) }}
                 /> */}
-                <CustomTag
+                  {/* <CustomTag
                   title={element?.status}
-                  color={element?.status === "ACTIVE" ? "green" : "red"}
+                  color={element?.status === 'ACTIVE' ? 'green' : 'red'}
                   // style={{ color: darkenColor(element.color, 50) }}
-                />
-              </div>
+                /> */}
+                </div>
 
-              <h5>{element.fees}</h5>
-              <p>{element.description}</p>
-              <div className="tags2">
-                <CustomTag title={"✏️ Edit"} onClick={handleEdit} />
-                <CustomTag
-                  title={"🗑"}
-                  color={"#fdeaea"}
-                  style={{ color: "#ed1c24" }}
-                  onClick={() => handleDelete(element.courseId)}
-                />
-              </div>
-            </CourseBoxes>
+                <h5>{element.fees}</h5>
+                <p>{element.description}</p>
+                <div className="tags2">
+                  <CustomTag
+                    title={"✏️ Edit"}
+                    onClick={() => handleEdit(element)}
+                  />
+                  <CustomTag
+                    title={"👁️ View"}
+                    onClick={() => handleView(element)}
+                  />
+                  <CustomTag
+                    title={"🗑"}
+                    color={"#fdeaea"}
+                    style={{ color: "#ed1c24" }}
+                    onClick={() => handleDelete(element.courseId, DeleteCourse)}
+                  />
+
+                  <Delete
+                    open={openDelete}
+                    setOpen={setOpenDelete}
+                    deleteId={deleteId}
+                    deleteService={deleteService}
+                    onSuccess={getData}
+                  />
+                </div>
+              </CourseBoxes>
+         
           </Col>
+             ) }
+             </>
         ))}
       </CustomRow>
+
+      <CustomModal
+        isVisible={isModalOpen}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
+        width={width}
+        modalTitle={modalTitle}
+        modalContent={modalContent}
+      />
     </StyledCourseManagement>
   );
 };

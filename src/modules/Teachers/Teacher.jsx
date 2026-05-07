@@ -1,10 +1,10 @@
-
-import { useMemo, useState } from "react";
-import { teacherFields } from "../FieldColumns/InputFields";
-import { teacherColumns } from "../FieldColumns/Columns";
+import { useEffect, useMemo, useState } from "react";
+import { teacherFields } from "../../components/FieldColumns/InputFields";
+import { teacherColumns } from "../../components/FieldColumns/Columns";
 import { CommonTable } from "@components/NewComponents/CommonTable/CommonTable";
 import { CommonForm } from "@components/NewComponents/CommonFormModal/CommonFormModal";
-
+import { PostTeacher } from "src/api/postReq";
+import { getTeachers } from "src/api/getReq";
 
 const data = [
   {
@@ -43,6 +43,20 @@ export const Teachers = () => {
   const [openForm, setForm] = useState(false);
   const [mode, setMode] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
+  const [dataSource, setDataSource] = useState([]);
+
+  // Student
+
+  const getData = async () => {
+    const data = await getTeachers();
+    setDataSource(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(dataSource, "datasourceteacher");
 
   const handleAdd = () => {
     setMode("add");
@@ -72,9 +86,59 @@ export const Teachers = () => {
   );
 
   const handleTeacherSubmit = (data) => {
+    const formatDate = (data) => new Date(data).toISOString().split("T")[0];
+    const convertedDOB = formatDate(data.dob);
+    const convertedDOJ = formatDate(data.joiningDate);
+
+    const formData = new FormData();
+
+    formData.append("teacherName", data?.teacherName || "");
+    formData.append("gender", data?.gender || "");
+    formData.append("dob", convertedDOB || "");
+    formData.append("mobile", data?.mobile || "");
+    formData.append("email", data?.email || "");
+    formData.append("qualification", data?.qualification || "");
+    formData.append("experience", data?.experience || "");
+    formData.append("specialization", data?.specialization || "");
+    formData.append("subjectName", data?.subjectName || "");
+    formData.append("salary", data?.salary || "");
+    formData.append("joiningDate", convertedDOJ || "");
+    formData.append("address", data?.address || "");
+    formData.append("district", data?.district || "");
+    formData.append("state", data?.state || "");
+    formData.append("pincode", data?.pincode || "");
+
+    if (data?.profilePhoto && data?.profilePhoto.length > 0) {
+      data?.profilePhoto.forEach((file) => {
+        if (file.originFileObj !== undefined) {
+          formData.append("profilePhoto", file.originFileObj);
+        }
+      });
+    }
+
+    if (data?.aadhaarPhoto && data?.aadhaarPhoto.length > 0) {
+      data?.aadhaarPhoto.forEach((file) => {
+        if (file.originFileObj !== undefined) {
+          formData.append("aadhaarPhoto", file.originFileObj);
+        }
+      });
+    }
+
+    if (data?.certificate && data?.certificate.length > 0) {
+      data?.certificate.forEach((file) => {
+        if (file.originFileObj !== undefined) {
+          formData.append("certificate", file.originFileObj);
+        }
+      });
+    }
+
+    const con = Object.fromEntries(formData.entries());
+    console.log(con, "consoleformdata");
+
     if (mode === "edit") {
       console.log("Updating...", data);
     } else {
+      PostTeacher(formData);
       console.log("Creating...", data);
     }
 
@@ -83,7 +147,6 @@ export const Teachers = () => {
     setMode("add");
     setSelectedRow(null);
   };
-
 
   return (
     <>
@@ -101,7 +164,7 @@ export const Teachers = () => {
 
       <CommonTable
         columns={columns}
-        data={data}
+        data={dataSource}
         name={"Teacher"}
         onAddClick={handleAdd}
         onClose={() => {

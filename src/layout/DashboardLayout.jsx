@@ -151,7 +151,7 @@ const DashboardLayout = ({ children }) => {
               </li>
 
               {/* Parents */}
-              <li>
+              {/* <li>
                 <div
                   className={`sidebar-link ${
                     location.pathname === "/parents" ? "active" : ""
@@ -162,7 +162,7 @@ const DashboardLayout = ({ children }) => {
 
                 <div>{(!collapsed || hovered) && <span>Parents</span>}</div>
                 </div>
-              </li>
+              </li> */}
 
               {/* Staff */}
 
@@ -275,9 +275,9 @@ const DashboardLayout = ({ children }) => {
               <li>
                 <div
                   className={`sidebar-link ${
-                    location.pathname === "/ddd" ? "active" : ""
+                    location.pathname === "/Marks" ? "active" : ""
                   }`}
-                  onClick={() => handleNavigate("/")}
+                  onClick={() => handleNavigate("/marks")}
                 >
                     <div className="emoji-collapsed">📊 </div>
                   {(!collapsed || hovered) && <span>Marks</span>}

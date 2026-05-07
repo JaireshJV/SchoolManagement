@@ -9,11 +9,14 @@ import {
 import BarChartAttendance from "./BarChartAttendance";
 import ProgressBar from "./ProgressBar";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "@modules/Auth/authSlice";
 
 export const SuperAdminDashboard = () => {
 
 const navigate = useNavigate() ;
-    
+const userName = useSelector(selectCurrentUser) ;
+
   const carddata = [
     {
       key: "1",
@@ -80,6 +83,30 @@ const navigate = useNavigate() ;
       color: "red",
     },
   ];
+
+  // Greeting
+
+  const getGreeting = () => {
+  const hour = new Date().getHours();
+
+  if (hour < 12) return "Good Morning 👋";
+  if (hour < 18) return "Good Afternoon ☀️";
+  return "Good Evening 🌙";
+};
+
+// Displaying date and day
+
+const getFormattedDate = () => {
+  const today = new Date();
+
+  return today.toLocaleDateString("en-IN", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+};
+
   return (
     <div>
       <CustomRow space={[12, 12]}>
@@ -87,9 +114,9 @@ const navigate = useNavigate() ;
           <HeaderCard>
             <CustomRow>
               <Col span={24} md={12}>
-                <p>Good Morning 👋 </p>
-                <h3>Welcome back, Super Admin</h3>
-                <p>Today: Monday, 14 April 2026 · 3 exams this week</p>
+                <p>{getGreeting()} </p>
+                <h3>Welcome back, {userName}</h3>
+                <p>Today: {getFormattedDate()} · 3 exams this week</p>
               </Col>
               <Col span={24} md={12}>
                 <div className="header-right">
