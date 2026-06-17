@@ -60,6 +60,7 @@ export const DeleteTeacher = async (id) => {
 };
 
 
+<<<<<<< HEAD
 // Subject
 
 export const DeleteSubject = async (id) => {
@@ -173,3 +174,7 @@ export const DeleteFranchise = async (id) => {
     Alert.error("Failed Deleting Detail", error?.message);
   }
 };
+=======
+
+
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603

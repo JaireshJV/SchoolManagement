@@ -3,6 +3,11 @@ import { WarningFilled } from "@ant-design/icons";
 
 export const Delete = ({ open, setOpen, deleteId, deleteService, onSuccess }) => {
 
+<<<<<<< HEAD
+=======
+console.log(deleteId, deleteService, onSuccess, "Delete Modal Called");
+
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   const handleOk = async () => {
     try {
     const res = await deleteService(deleteId);

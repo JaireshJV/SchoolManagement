@@ -57,7 +57,21 @@
 }
 
 .FeeManagement {
+<<<<<<< HEAD
   background-color: #5ca50e;
+=======
+background-color: #5ca50e;
+}
+
+.Mark {
+background-color: white;
+}
+
+.title{
+    font-size: 15px;
+    color: #fff;
+    font-weight: 700;
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 }
 
 .Mark {

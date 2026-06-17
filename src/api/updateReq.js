@@ -63,6 +63,7 @@ export const UpdateTeacher = async (id, data) => {
     const error = err?.response?.data;
     Alert.error("Teacher update Failed !! ", error?.message);
   }
+<<<<<<< HEAD
 };
 
 
@@ -174,4 +175,6 @@ export const UpdateFranchise = async (id, data) => {
     const error = err?.response?.data;
     Alert.error("Franchise update Failed !! ", error?.message);
   }
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 };

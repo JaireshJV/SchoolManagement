@@ -66,11 +66,18 @@ export const courseFields = [
 ];
 
 // Batch fields
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 export const batchFields = (options = []) => [
   {
     name: "courseId",
     label: "Course",
+<<<<<<< HEAD
     icon: "🎓",
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "select",
     options: options,
     placeholder: "Select Course",
@@ -78,21 +85,40 @@ export const batchFields = (options = []) => [
   {
     name: "batchName",
     label: "Batch Name",
+<<<<<<< HEAD
     icon: "📚",
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter Batch Name",
   },
   {
+<<<<<<< HEAD
     name: "timing",
     label: "Timing",
     icon: "⏰",
     type: "time",
     placeholder: "Enter Batch Timing",
+=======
+    name: "batchCode",
+    label: "Batch Code",
+    type: "text",
+    placeholder: "Enter Batch Code",
+  },
+  {
+    name: "timing",
+    label: "Timing",
+    type: "text",
+    placeholder: "Enter Batch Timing (e.g. 10:00 AM - 12:00 PM)",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   },
   {
     name: "mode",
     label: "Mode",
+<<<<<<< HEAD
     icon: "📡",
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "select",
     options: [
       { label: "Online", value: "online" },
@@ -104,46 +130,76 @@ export const batchFields = (options = []) => [
   {
     name: "centerName",
     label: "Center Name",
+<<<<<<< HEAD
     icon: "🏢",
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter Center Name",
   },
   {
     name: "startDate",
     label: "Start Date",
+<<<<<<< HEAD
     icon: "📅",
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "date",
     placeholder: "Select Start Date",
   },
   {
     name: "endDate",
     label: "End Date",
+<<<<<<< HEAD
     icon: "📆",
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "date",
     placeholder: "Select End Date",
   },
   {
     name: "maxStudents",
     label: "Max Students",
+<<<<<<< HEAD
     icon: "👥",
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "number",
     placeholder: "Enter Maximum Students",
   },
 ];
 
 // Student Fields
+<<<<<<< HEAD
 export const studentFields = (courseoption = [], batchoption = []) => [
   {
     name: "studentName",
     label: "Student Name",
     icon: "👨‍🎓",
+=======
+
+export const studentFields = (courseoption = [], batchoption = []) => [
+  {
+    name: "admissionNo",
+    label: "ADMISSION NO",
+    type: "text",
+    placeholder: "Enter admission number",
+  },
+  {
+    name: "studentName",
+    label: "STUDENT NAME",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter full name",
   },
   {
     name: "gender",
+<<<<<<< HEAD
     label: "Gender",
     icon: "⚧️",
+=======
+    label: "GENDER",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "select",
     placeholder: "Select gender",
     options: [
@@ -154,22 +210,34 @@ export const studentFields = (courseoption = [], batchoption = []) => [
   },
   {
     name: "dob",
+<<<<<<< HEAD
     label: "Date of Birth",
     icon: "🎂",
+=======
+    label: "DATE OF BIRTH",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "date",
     placeholder: "Select date of birth",
   },
   {
     name: "mobile",
+<<<<<<< HEAD
     label: "Mobile",
     icon: "📱",
+=======
+    label: "MOBILE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "number",
     placeholder: "Enter mobile number",
   },
   {
     name: "email",
+<<<<<<< HEAD
     label: "Email",
     icon: "📧",
+=======
+    label: "EMAIL",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "email",
     placeholder: "Enter email address",
   },
@@ -177,36 +245,56 @@ export const studentFields = (courseoption = [], batchoption = []) => [
   // 👨‍👩‍👧 Parent Details
   {
     name: "fatherName",
+<<<<<<< HEAD
     label: "Father Name",
     icon: "👨",
+=======
+    label: "FATHER NAME",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter father name",
   },
   {
     name: "motherName",
+<<<<<<< HEAD
     label: "Mother Name",
     icon: "👩",
+=======
+    label: "MOTHER NAME",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter mother name",
   },
   {
     name: "parentMobile",
+<<<<<<< HEAD
     label: "Parent Mobile",
     icon: "☎️",
+=======
+    label: "PARENT MOBILE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "number",
     placeholder: "Enter parent mobile number",
   },
   {
     name: "parentEmail",
+<<<<<<< HEAD
     label: "Parent Email",
     icon: "📨",
+=======
+    label: "PARENT EMAIL",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "email",
     placeholder: "Enter parent email",
   },
   {
     name: "parentProfession",
+<<<<<<< HEAD
     label: "Parent Profession",
     icon: "💼",
+=======
+    label: "PARENT PROFESSION",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter parent profession",
   },
@@ -214,29 +302,45 @@ export const studentFields = (courseoption = [], batchoption = []) => [
   // 🎓 Academic Details
   {
     name: "schoolName",
+<<<<<<< HEAD
     label: "School Name",
     icon: "🏫",
+=======
+    label: "SCHOOL NAME",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter school name",
   },
   {
     name: "currentStandard",
+<<<<<<< HEAD
     label: "Current Standard",
     icon: "📘",
+=======
+    label: "CURRENT STANDARD",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter current class/standard",
   },
   {
     name: "board",
+<<<<<<< HEAD
     label: "Board",
     icon: "📚",
+=======
+    label: "BOARD",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter board (CBSE/ICSE/State)",
   },
   {
     name: "medium",
+<<<<<<< HEAD
     label: "Medium",
     icon: "🗣️",
+=======
+    label: "MEDIUM",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter medium (English/Hindi/etc.)",
   },
@@ -244,33 +348,50 @@ export const studentFields = (courseoption = [], batchoption = []) => [
   // 📍 Address
   {
     name: "address",
+<<<<<<< HEAD
     label: "Address",
     icon: "📌",
+=======
+    label: "ADDRESS",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "textarea",
     placeholder: "Enter full address",
   },
   {
     name: "district",
+<<<<<<< HEAD
     label: "District",
     icon: "🏙️",
+=======
+    label: "DISTRICT",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter district",
   },
   {
     name: "state",
+<<<<<<< HEAD
     label: "State",
     icon: "🗺️",
+=======
+    label: "STATE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter state",
   },
   {
     name: "pincode",
+<<<<<<< HEAD
     label: "Pincode",
     icon: "📮",
+=======
+    label: "PINCODE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "number",
     placeholder: "Enter pincode",
   },
 
+<<<<<<< HEAD
   // 📚 Course & Batch
   {
     name: "courseId",
@@ -287,32 +408,61 @@ export const studentFields = (courseoption = [], batchoption = []) => [
     type: "select",
     placeholder: "Select batch",
     options: batchoption,
+=======
+  // 📚 Course & Batch (Objects)
+  {
+    name: "courseId",
+    label: "COURSE",
+    type: "select",
+    placeholder: "Select course",
+    options: courseoption, // 👈 fill dynamically from API
+  },
+  {
+    name: "batchId",
+    label: "BATCH",
+    type: "select",
+    placeholder: "Select batch",
+    options: batchoption, // 👈 fill dynamically from API
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   },
 
   // 📄 Documents
   {
     name: "profilePhoto",
+<<<<<<< HEAD
     label: "Profile Photo",
     icon: "🖼️",
+=======
+    label: "PROFILE PHOTO",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "file",
     placeholder: "Upload profile photo",
   },
   {
     name: "aadhaarPhoto",
+<<<<<<< HEAD
     label: "Aadhaar Photo",
     icon: "🪪",
+=======
+    label: "AADHAAR PHOTO",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "file",
     placeholder: "Upload Aadhaar photo",
   },
   {
     name: "signature",
+<<<<<<< HEAD
     label: "Signature",
     icon: "✍️",
+=======
+    label: "SIGNATURE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "file",
     placeholder: "Upload signature",
   },
 
   // 🔄 Status
+<<<<<<< HEAD
   // {
   //   name: "status",
   //   label: "Status",
@@ -332,13 +482,37 @@ export const teacherFields = [
     name: "teacherName",
     label: "Teacher Name",
     icon: "👨‍🏫",
+=======
+  {
+    name: "status",
+    label: "STATUS",
+    type: "select",
+    placeholder: "Select status",
+    options: [
+      { label: "Active", value: "Active" },
+      { label: "Inactive", value: "Inactive" },
+    ],
+  },
+];
+
+// Teacher Fields
+
+export const teacherFields = [
+  {
+    name: "teacherName",
+    label: "TEACHER NAME",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Full name",
   },
   {
     name: "gender",
+<<<<<<< HEAD
     label: "Gender",
     icon: "⚧️",
+=======
+    label: "GENDER",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "select",
     placeholder: "Select gender",
     options: [
@@ -349,94 +523,147 @@ export const teacherFields = [
   },
   {
     name: "dob",
+<<<<<<< HEAD
     label: "Date of Birth",
     icon: "🎂",
+=======
+    label: "DATE OF BIRTH",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "date",
   },
   {
     name: "mobile",
+<<<<<<< HEAD
     label: "Mobile",
     icon: "📱",
+=======
+    label: "MOBILE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "number",
     placeholder: "Enter mobile number",
   },
   {
     name: "email",
+<<<<<<< HEAD
     label: "Email",
     icon: "📧",
+=======
+    label: "EMAIL",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "email",
     placeholder: "Enter email address",
   },
   {
     name: "qualification",
+<<<<<<< HEAD
     label: "Qualification",
     icon: "🎓",
+=======
+    label: "QUALIFICATION",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter qualification details",
   },
   {
     name: "experience",
+<<<<<<< HEAD
     label: "Experience",
     icon: "💼",
+=======
+    label: "EXPERIENCE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Fill experience",
   },
   {
     name: "specialization",
+<<<<<<< HEAD
     label: "Specialization",
     icon: "🧠",
+=======
+    label: "SPECIALIZATION",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Describe specialization",
   },
   {
     name: "subjectName",
+<<<<<<< HEAD
     label: "Subject",
     icon: "📚",
+=======
+    label: "SUBJECT",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter subject",
   },
   {
     name: "salary",
+<<<<<<< HEAD
     label: "Salary",
     icon: "💰",
+=======
+    label: "SALARY",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "number",
     placeholder: "Salary Info",
   },
   {
     name: "joiningDate",
+<<<<<<< HEAD
     label: "Joining Date",
     icon: "📅",
+=======
+    label: "JOINING DATE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "date",
   },
   {
     name: "address",
+<<<<<<< HEAD
     label: "Address",
     icon: "📌",
+=======
+    label: "ADDRESS",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "textarea",
     placeholder: "Enter full address",
   },
   {
     name: "district",
+<<<<<<< HEAD
     label: "District",
     icon: "🏙️",
+=======
+    label: "DISTRICT",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter district",
   },
   {
     name: "state",
+<<<<<<< HEAD
     label: "State",
     icon: "🗺️",
+=======
+    label: "STATE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "text",
     placeholder: "Enter state",
   },
   {
     name: "pincode",
+<<<<<<< HEAD
     label: "Pincode",
     icon: "📮",
+=======
+    label: "PINCODE",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "number",
     placeholder: "Enter pincode",
   },
   {
+<<<<<<< HEAD
     name: "password",
     label: "Password",
     icon: "📮",
@@ -447,18 +674,27 @@ export const teacherFields = [
     name: "profilePhoto",
     label: "Profile Photo",
     icon: "🖼️",
+=======
+    name: "profilePhoto",
+    label: "PROFILE PHOTO",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "file",
     placeholder: "Upload profile photo",
   },
   {
     name: "aadhaarPhoto",
+<<<<<<< HEAD
     label: "Aadhaar Photo",
     icon: "🪪",
+=======
+    label: "AADHAAR PHOTO",
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     type: "file",
     placeholder: "Upload Aadhaar photo",
   },
   {
     name: "certificate",
+<<<<<<< HEAD
     label: "Certificate",
     icon: "📄",
     type: "file",
@@ -729,5 +965,20 @@ export const franchiseFields = [
     label: "Password",
     type: "password",
     placeholder: "Enter Password",
+=======
+    label: "CERTIFICATE",
+    type: "file",
+    placeholder: "Upload certificates",
+  },
+  {
+    name: "status",
+    label: "STATUS",
+    type: "select",
+    placeholder: "Select status",
+    options: [
+      { label: "Active", value: "Active" },
+      { label: "Inactive", value: "Inactive" },
+    ],
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   },
 ];

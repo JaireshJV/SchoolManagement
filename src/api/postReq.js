@@ -35,6 +35,45 @@ export const PostBatches = async (data) => {
   } catch (err) {
      const error = err?.response?.data;
     Alert.error("Batch added Failed !! ", error?.message);
+<<<<<<< HEAD
+=======
+  }
+};
+
+// Student
+
+export const PostStudent = async (data) => {
+  console.log(data, "datadata");
+
+  try {
+    const response = await baseRequest.post(APIURLS.POST_STUDENT, data);
+    console.log(response, "responsestudent");
+    if (response.status == 200) {
+      Alert.success("Student added successfully", "New Student Added");
+    }
+    return response.data;
+  } catch (err) {
+    const error = err?.response?.data;
+    Alert.error("Student added Failed !! ", error?.message);
+  }
+};
+
+// Teacher
+
+export const PostTeacher = async (data) => {
+  console.log(data, "datadata");
+
+  try {
+    const response = await baseRequest.post(APIURLS.POST_TEACHER, data);
+    console.log(response, "responseteacher");
+    if (response.status == 200) {
+      Alert.success("Teacher added successfully", "New Teacher Added");
+    }
+    return response.data;
+  } catch (err) {
+    const error = err?.response?.data;
+    Alert.error("Teacher added Failed !! ", error?.message);
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   }
 };
 

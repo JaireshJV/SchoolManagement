@@ -12,7 +12,10 @@ import { batchColumns } from "@components/FieldColumns/Columns";
 import { Delete } from "@components/Delete/Delete";
 import { CustomModal } from "@components/others";
 import { BatchesDetails } from "./BatchesDetails";
+<<<<<<< HEAD
 import { CommonModal } from "@components/NewComponents/CommonModal/CommonModal";
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
 export const Batches = () => {
   const [openForm, setForm] = useState(false);
@@ -20,19 +23,35 @@ export const Batches = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [courseData, setCourseData] = useState([]);
   const [batchData, setBatchData] = useState([]);
+<<<<<<< HEAD
   const [deleteId, setDeleteId] = useState(null);
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteService, setDeleteService] = useState(null);
 
   // ====== Modal States ========
+=======
+
+  const [deleteId, setDeleteId] = useState(null);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteService, setDeleteService] = useState(null);
+
+    // ====== Modal States ========
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalContent, setModalContent] = useState(null);
   const [width, setWidth] = useState(0);
 
+<<<<<<< HEAD
   // ===== Modal Functions =====
   //Common Modal Component
   const [openModal, setModalOpen] = useState(false);
+=======
+    // ===== Modal Functions =====
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -75,7 +94,11 @@ export const Batches = () => {
     label: course?.courseName,
     value: course?.courseId,
   }));
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   const fields = batchFields(courseOptions);
 
   const handleBatchesSubmit = async (data) => {
@@ -88,9 +111,15 @@ export const Batches = () => {
     console.log(newVal,'newwwww');
     
     if (mode === "edit") {
+<<<<<<< HEAD
       await UpdateBatch(data.batchId, newVal);
     } else {
       await PostBatches(newVal);
+=======
+    await UpdateBatch(data.batchId, data,);
+    } else {
+    await PostBatches(data);
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     }
     await getBatchesData();
     setForm(false);
@@ -99,11 +128,22 @@ export const Batches = () => {
   };
 
   const handleView = (record) => {
+<<<<<<< HEAD
     setModalOpen(true);
     setSelectedRow(record);
   };
 
   const handleDelete = (record) => {
+=======
+         setModalTitle("Batch Details");
+         setWidth(600);
+         setModalContent(<BatchesDetails record={record} />);
+         showModal();
+  };
+
+  const handleDelete = (record) => {
+    console.log(record, "When clic Delete")
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     setDeleteId(record.batchId);
     setDeleteService(() => DeleteBatch);
     setOpenDelete(true);
@@ -116,7 +156,10 @@ export const Batches = () => {
       courseId: record.course?.courseId,
       startDate: record.startDate ? dayjs(record.startDate) : null,
       endDate: record.endDate ? dayjs(record.endDate) : null,
+<<<<<<< HEAD
       timing: record.timing ? dayjs(record?.timing, "HH:mm") : null,
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     });
     setForm(true);
   };
@@ -168,6 +211,7 @@ export const Batches = () => {
         deleteService={deleteService}
         onSuccess={getBatchesData}
       />
+<<<<<<< HEAD
 
       <CommonModal
         open={openModal}
@@ -176,6 +220,8 @@ export const Batches = () => {
         fields={fields}
         title="Batch"
       />
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     </>
   );
 };

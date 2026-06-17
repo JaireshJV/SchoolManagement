@@ -2,12 +2,17 @@ import { baseRequest } from "@request/request";
 import { APIURLS } from "./urls";
 import { Alert } from "@components/alert/AlertService";
 
+<<<<<<< HEAD
 // Courses
+=======
+// Courses 
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
 export const getCourses = async () => {
   try {
     const response = await baseRequest.get(APIURLS.GET_COURSE);
     const data = await response?.data?.content;
+<<<<<<< HEAD
     console.log(data, "dataaaaa");
 
     return data;
@@ -17,11 +22,24 @@ export const getCourses = async () => {
   }
 };
 
+=======
+    console.log(data,'dataaaaa');
+    
+    return data ;
+  } catch (err) {
+    const error = err?.response?.data ;
+    Alert.error("Failed Fetching Data",error?.message) ;
+  }
+};
+
+
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 // Batches
 
 export const getBatches = async () => {
   try {
     const response = await baseRequest.get(APIURLS.GET_BATCHES);
+<<<<<<< HEAD
     const data = await response?.data?.content;
     console.log(data, "batchhhh");
 
@@ -30,6 +48,16 @@ export const getBatches = async () => {
     const error = err?.response?.data;
     Alert.error("Failed Fetching Data", error?.message);
   }
+=======
+    const data = await response?.data?.content ;
+    console.log(data,'dataaaaa');
+    
+    return data ;
+  } catch (err) {
+    const error = err?.response?.data ;
+    Alert.error("Failed Fetching Data",error?.message) ;
+};
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 };
 
 // Students
@@ -37,6 +65,7 @@ export const getBatches = async () => {
 export const getStudents = async () => {
   try {
     const response = await baseRequest.get(APIURLS.GET_STUDENTS);
+<<<<<<< HEAD
     const data = await response?.data?.content;
     console.log(data, "dataaaaa");
 
@@ -46,12 +75,24 @@ export const getStudents = async () => {
     Alert.error("Failed Fetching Data", error?.message);
   }
 };
+=======
+    const data = await response?.data?.content ;
+    console.log(data,'dataaaaa');
+    
+    return data ;
+  } catch (err) {
+    const error = err?.response?.data ;
+    Alert.error("Failed Fetching Data",error?.message) ;
+};
+} ;
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
 // Teachers
 
 export const getTeachers = async () => {
   try {
     const response = await baseRequest.get(APIURLS.GET_TEACHERS);
+<<<<<<< HEAD
     const data = await response?.data?.content;
     console.log(data, "dataaaaa");
 
@@ -206,4 +247,14 @@ export const getFranchise = async () => {
 
     Alert.error("Failed Fetching Franchise", error?.message);
   }
+=======
+    const data = await response?.data?.content ;
+    console.log(data,'dataaaaa');
+    
+    return data ;
+  } catch (err) {
+    const error = err?.response?.data ;
+    Alert.error("Failed Fetching Data",error?.message) ;
+};
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 };

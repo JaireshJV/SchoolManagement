@@ -5,11 +5,14 @@ import { studentFields } from "../../components/FieldColumns/InputFields";
 import { CommonForm } from "@components/NewComponents/CommonFormModal/CommonFormModal";
 import { getBatches, getCourses, getStudents } from "src/api/getReq";
 import { PostStudent } from "src/api/postReq";
+<<<<<<< HEAD
 import dayjs from "dayjs";
 import { UpdateStudent } from "src/api/updateReq";
 import { Delete } from "@components/Delete/Delete";
 import { DeleteStudent } from "src/api/deleteReq";
 import { CommonModal } from "@components/NewComponents/CommonModal/CommonModal";
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
 const data = [
   {
@@ -56,6 +59,7 @@ export const Students = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [courseData, setCourseData] = useState([]);
   const [batchData, setBatchData] = useState([]);
+<<<<<<< HEAD
   const [dataSource, setDataSource] = useState([]);
 
   //========Delete Component ========
@@ -65,6 +69,9 @@ export const Students = () => {
 
   //Common Modal Component
   const [openModal, setModalOpen] = useState(false);
+=======
+  const [dataSource , setDataSource] = useState([]) ;
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
   // Get Courses
   const getCourseData = async () => {
@@ -76,6 +83,13 @@ export const Students = () => {
     }
   };
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    getCourseData();
+  }, []);
+
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   const courseOptions = courseData.map((course) => ({
     label: course?.courseName,
     value: course?.courseId,
@@ -87,6 +101,13 @@ export const Students = () => {
     setBatchData(data);
   };
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    getBatchesData();
+  }, []);
+
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   const batchOptions = batchData.map((batch) => ({
     label: batch?.batchName,
     value: batch?.batchId,
@@ -103,9 +124,15 @@ export const Students = () => {
 
   useEffect(() => {
     getData();
+<<<<<<< HEAD
     getCourseData();
     getBatchesData();
   }, []);
+=======
+  }, []);
+
+  console.log(dataSource, "datasource");
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
   const handleAdd = () => {
     setMode("add");
@@ -140,9 +167,19 @@ export const Students = () => {
     [handleEdit],
   );
 
+<<<<<<< HEAD
   const handleStudentSubmit = async (data) => {
     const formatDate = (data) => new Date(data)?.toISOString().split("T")[0];
     const convertedDOB = formatDate(data?.dob);
+=======
+  const handleStudentSubmit = (data) => {
+    console.log(data, "ddddd");
+
+    const formatDate = (data) => new Date(data)?.toISOString().split("T")[0];
+    const convertedDOB = formatDate(data?.dob);
+    console.log(convertedDOB,'convertedDOB');
+    
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     const formData = new FormData();
 
     formData.append("studentName", data?.studentName || "");
@@ -172,6 +209,32 @@ export const Students = () => {
           formData.append("profilePhoto", file.originFileObj);
         }
       });
+<<<<<<< HEAD
+=======
+    }
+
+    if (data?.aadhaarPhoto && data?.aadhaarPhoto.length > 0) {
+      data?.aadhaarPhoto.forEach((file) => {
+        if (file.originFileObj !== undefined) {
+          formData.append("aadhaarPhoto", file.originFileObj);
+        }
+      });
+    }
+
+    if (data?.signature && data?.signature.length > 0) {
+      data?.signature.forEach((file) => {
+        if (file.originFileObj !== undefined) {
+          formData.append("signature", file.originFileObj);
+        }
+      });
+    }
+
+    if (mode === "edit") {
+      console.log("Updating...", data);
+    } else {
+      PostStudent(formData);
+      console.log("Creating...", data);
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     }
 
     if (data?.aadhaarPhoto && data?.aadhaarPhoto.length > 0) {

@@ -16,6 +16,7 @@ import StudyMaterials from "@modules/StudyMaterial/Partials/StudyMaterial";
 import { Teachers } from "@modules/Teachers/Teacher";
 import { Batches } from "@modules/Batches/Batches";
 import { Marks } from "@modules/Marks/Marks";
+<<<<<<< HEAD
 import { Profile } from "@modules/Profile/Profile";
 import { Subjects } from "@modules/Subjects/Subjects";
 import { Chapters } from "@modules/Chapters/Chapters";
@@ -23,6 +24,8 @@ import { Topics } from "@modules/Topics/Topics";
 import { QuestionBankPage } from "@modules/QuestionBank/QuestionBankPage";
 import Exams from "@modules/Exams/Partials/Exams";
 import Franchise from "@modules/Franchise/Franchise";
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
 export const anonymous = [
   {
@@ -115,6 +118,10 @@ export const adminAuthenticated = [
   {
     routePath: "/studyMaterial",
     Component: StudyMaterials,
+  },
+    {
+    routePath: "/marks",
+    Component: Marks,
   },
   {
     routePath: "/marks",

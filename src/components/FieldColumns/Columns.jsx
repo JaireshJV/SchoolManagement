@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   DeleteFilled,
   EditOutlined,
@@ -11,6 +12,15 @@ import { FaFilePdf } from "react-icons/fa";
 // Batch Columns
 
 export const batchColumns = (handleView, handleEdit, handleDelete) => [
+=======
+import { DeleteFilled, EditOutlined, EyeFilled } from "@ant-design/icons";
+import { getStatus } from "@utils/statusBadge";
+import { Button, Space, Switch, Tag, Tooltip } from "antd";
+
+// Batch Columns 
+
+export const batchColumns = (handleView, handleEdit, handleDelete) =>[
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   {
     title: "ACTIONS",
     dataIndex: "actions",
@@ -63,22 +73,38 @@ export const batchColumns = (handleView, handleEdit, handleDelete) => [
     dataIndex: "centerName",
     key: "centerName",
   },
+<<<<<<< HEAD
   {
+=======
+    {
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     title: "START DATE",
     dataIndex: "startDate",
     key: "startDate",
   },
+<<<<<<< HEAD
   {
+=======
+    {
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     title: "END DATE",
     dataIndex: "endDate",
     key: "endDate",
   },
+<<<<<<< HEAD
   {
+=======
+      {
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     title: "MODE",
     dataIndex: "mode",
     key: "mode",
   },
+<<<<<<< HEAD
   {
+=======
+      {
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     title: "TIMING",
     dataIndex: "timing",
     key: "timing",
@@ -145,7 +171,13 @@ export const studentColumns = (handleView, handleEdit, handleDelete) => [
     render: (_, record) => (
       <div>
         <div style={{ fontWeight: 600 }}>{record.studentName}</div>
+<<<<<<< HEAD
         <div style={{ fontSize: "12px", color: "#888" }}>{record.email}</div>
+=======
+        <div style={{ fontSize: "12px", color: "#888" }}>
+          {record.email}
+        </div>
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
       </div>
     ),
   },
@@ -163,7 +195,11 @@ export const studentColumns = (handleView, handleEdit, handleDelete) => [
       return <Tag style={style}>{value}</Tag>;
     },
   },
+<<<<<<< HEAD
   {
+=======
+ {
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     title: "BATCH",
     dataIndex: ["batch", "batchName"], // 👈 object handling
     key: "batch",
@@ -174,7 +210,11 @@ export const studentColumns = (handleView, handleEdit, handleDelete) => [
     dataIndex: "parentMobile",
     key: "parentMobile",
   },
+<<<<<<< HEAD
   {
+=======
+{
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     title: "STATUS",
     dataIndex: "status",
     key: "status",
@@ -191,6 +231,7 @@ export const studentColumns = (handleView, handleEdit, handleDelete) => [
         />
       );
     },
+<<<<<<< HEAD
   },
 ];
 
@@ -198,6 +239,16 @@ export const studentColumns = (handleView, handleEdit, handleDelete) => [
 
 export const teacherColumns = (handleView, handleEdit, handleDelete) => [
   {
+=======
+  },  
+];
+
+
+// Teacher Columns
+
+export const teacherColumns = (handleView, handleEdit, handleDelete) => [
+    {
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     title: "ACTIONS",
     key: "actions",
     render: (_, record) => (
@@ -232,12 +283,18 @@ export const teacherColumns = (handleView, handleEdit, handleDelete) => [
       </Space>
     ),
   },
+<<<<<<< HEAD
 
   {
+=======
+  
+    {    
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
     title: "TEACHER",
     dataIndex: "teacherName",
     key: "teacherName",
     className: "primary-column",
+<<<<<<< HEAD
     render: (_, record) => (
       <div>
         <div style={{ fontWeight: 600 }}>{record.teacherName}</div>
@@ -246,6 +303,14 @@ export const teacherColumns = (handleView, handleEdit, handleDelete) => [
         </div>
       </div>
     ),
+=======
+    render: (_, record)=>(
+      <div>
+        <div style={{ fontWeight: 600}}>{record.teacherName}</div>
+        <div style={{ fontSize: "10px", color: "#888"}}>{record.teacherId}</div>
+      </div>
+    )
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   },
   {
     title: "SUBJECT",
@@ -285,6 +350,7 @@ export const teacherColumns = (handleView, handleEdit, handleDelete) => [
       );
     },
   },
+<<<<<<< HEAD
 ];
 
 // Study Material
@@ -679,4 +745,6 @@ export const franchiseColumns = (handleEdit, handleDelete) => [
       );
     },
   },
+=======
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 ];

@@ -10,6 +10,10 @@ import { UpdateCourse } from "src/api/updateReq";
 import { DeleteCourse } from "src/api/deleteReq";
 import { Delete } from "@components/Delete/Delete";
 import { courseFields } from "@components/FieldColumns/InputFields";
+<<<<<<< HEAD
+=======
+import { CourseDetails } from "./CourseDetails";
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
 
 export const CourseManagement = () => {
   const [openForm, setForm] = useState(false);
@@ -53,6 +57,16 @@ export const CourseManagement = () => {
     setForm(true);
   };
 
+<<<<<<< HEAD
+=======
+    const handleView = (record) => {
+      setModalTitle("Course Details");
+      setWidth(600);
+      setModalContent(<CourseDetails record={record} />);
+      showModal();
+    };
+
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   const handleEdit = (record) => {
     setMode("edit");
     setSelectedRow(record);
@@ -90,6 +104,48 @@ export const CourseManagement = () => {
     setSelectedRow(null);
   };
 
+<<<<<<< HEAD
+=======
+  const course = [
+    {
+      key: "1",
+      emoji: "🔬",
+      label: "NEET & JEE",
+      sub: "Medical & Engineering entrance prep",
+      duration: "2 Years",
+      faculty: "8 Faculty",
+      status: "Active",
+      fees: "₹85,000 / year",
+      description: "Subjects: Physics, Chemistry, Biology, Maths",
+      color: "#E6F7EE",
+    },
+    {
+      key: "2",
+      emoji: "📊",
+      label: "Accounting",
+      sub: "CA Foundation & Professional Accounting",
+      duration: "1 Year",
+      faculty: "4 Faculty",
+      status: "Active",
+      fees: "₹45,000 / year",
+      description: "Subjects: Accounts, Taxation, Tally, GST",
+      color: "#fffde6",
+    },
+    {
+      key: "3",
+      emoji: "✈️",
+      label: "Air Hostess Training",
+      sub: "Aviation hospitality & grooming program",
+      duration: "6 Months",
+      faculty: "3 Faculty",
+      status: "Active",
+      fees: "₹35,000 / course",
+      description: "Modules: Grooming, Communication, Safety",
+      color: "#eef2ff",
+    },
+  ];
+
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
   function darkenColor(hex, percent) {
     let num = parseInt(hex.replace("#", ""), 16),
       amt = Math.round(2.55 * percent),
@@ -184,6 +240,13 @@ export const CourseManagement = () => {
                     onClick={() => handleEdit(element)}
                   />
                   <CustomTag
+<<<<<<< HEAD
+=======
+                    title={"👁️ View"}
+                    onClick={() => handleView(element)}
+                  />
+                  <CustomTag
+>>>>>>> 6524e95e697f823c779cab02931aeca7323ea603
                     title={"🗑"}
                     color={"#fdeaea"}
                     style={{ color: "#ed1c24" }}
