@@ -93,8 +93,8 @@ const DashboardLayout = ({ children }) => {
           <div className="logo">
             {/* Full logo (visible when expanded or hovered) */}
             {/* <div className="logo-full"> */}
-              <img src={logoFull} alt="Edu Pro" className="logo-full" />
-              {/* <h4>EduPro</h4>
+            <img src={logoFull} alt="Edu Pro" className="logo-full" />
+            {/* <h4>EduPro</h4>
               <p>Institute ERP</p> */}
             {/* </div> */}
 
@@ -125,7 +125,7 @@ const DashboardLayout = ({ children }) => {
                   onClick={() => handleNavigate("/")}
                 >
                   <div className="emoji-collapsed">🏠 </div>
-              
+
                   {(!collapsed || hovered) && <span>Dashboard</span>}
                 </div>
               </li>
@@ -145,13 +145,13 @@ const DashboardLayout = ({ children }) => {
                   onClick={() => handleNavigate("/students")}
                 >
                   <div className="emoji-collapsed">🎓 </div>
-                 
+
                   {(!collapsed || hovered) && <span>Students</span>}
                 </div>
               </li>
 
               {/* Parents */}
-              <li>
+              {/* <li>
                 <div
                   className={`sidebar-link ${
                     location.pathname === "/parents" ? "active" : ""
@@ -162,7 +162,7 @@ const DashboardLayout = ({ children }) => {
 
                 <div>{(!collapsed || hovered) && <span>Parents</span>}</div>
                 </div>
-              </li>
+              </li> */}
 
               {/* Staff */}
 
@@ -177,8 +177,8 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/teachers")}
                 >
-                    <div className="emoji-collapsed">👨‍🏫 </div>
-                  
+                  <div className="emoji-collapsed">👨‍🏫 </div>
+
                   {(!collapsed || hovered) && <span>Teachers</span>}
                 </div>
               </li>
@@ -196,7 +196,7 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/courseManagement")}
                 >
-                    <div className="emoji-collapsed">📚 </div>
+                  <div className="emoji-collapsed">🗃️</div>
 
                   {(!collapsed || hovered) && <span>Courses</span>}
                 </div>
@@ -209,9 +209,61 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/batches")}
                 >
-                    <div className="emoji-collapsed">🗂️ </div>
-                  
+                  <div className="emoji-collapsed">🗂️ </div>
+
                   {(!collapsed || hovered) && <span>Batches</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/subjects" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/subjects")}
+                >
+                  <div className="emoji-collapsed">📚 </div>
+
+                  {(!collapsed || hovered) && <span>Subjects</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/chapters" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/chapters")}
+                >
+                  <div className="emoji-collapsed">📖 </div>
+
+                  {(!collapsed || hovered) && <span>Chapters</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/topics" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/topics")}
+                >
+                  <div className="emoji-collapsed">📌 </div>
+
+                  {(!collapsed || hovered) && <span>Topics</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/franchise" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/franchise")}
+                >
+                  <div className="emoji-collapsed">🤝 </div>
+
+                  {(!collapsed || hovered) && <span>Franchise</span>}
                 </div>
               </li>
 
@@ -222,7 +274,7 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/classSchedule")}
                 >
-                    <div className="emoji-collapsed">📅 </div>
+                  <div className="emoji-collapsed">📅 </div>
 
                   {(!collapsed || hovered) && <span>Schedule</span>}
                 </div>
@@ -235,7 +287,7 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/videoManager")}
                 >
-                    <div className="emoji-collapsed">📹 </div>
+                  <div className="emoji-collapsed">📹 </div>
 
                   {(!collapsed || hovered) && <span>Recorded Videos</span>}
                 </div>
@@ -248,9 +300,22 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/studyMaterial")}
                 >
-                    <div className="emoji-collapsed">📁 </div>
-                
+                  <div className="emoji-collapsed">📁 </div>
+
                   {(!collapsed || hovered) && <span>Study Material</span>}
+                </div>
+              </li>
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/question" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/question")}
+                >
+                  <div className="emoji-collapsed">? </div>
+
+                  {(!collapsed || hovered) && <span>Question Bank</span>}
                 </div>
               </li>
 
@@ -267,22 +332,22 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/attendance")}
                 >
-                    <div className="emoji-collapsed">✅ </div>
+                  <div className="emoji-collapsed">✅ </div>
                   {(!collapsed || hovered) && <span>Attendance</span>}
                 </div>
               </li>
 
-              <li>
+              {/* <li>
                 <div
                   className={`sidebar-link ${
-                    location.pathname === "/ddd" ? "active" : ""
+                    location.pathname === "/Marks" ? "active" : ""
                   }`}
-                  onClick={() => handleNavigate("/")}
+                  onClick={() => handleNavigate("/marks")}
                 >
                     <div className="emoji-collapsed">📊 </div>
                   {(!collapsed || hovered) && <span>Marks</span>}
                 </div>
-              </li>
+              </li> */}
 
               {/* Finance */}
 
@@ -297,10 +362,28 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/feeManagement")}
                 >
-                    <div className="emoji-collapsed">💳 </div>
+                  <div className="emoji-collapsed">💳 </div>
 
-                  
                   {(!collapsed || hovered) && <span>Fee Management</span>}
+                </div>
+              </li>
+
+              {/* Test */}
+
+              {(!collapsed || hovered) && (
+                <li className="section-label">EXAM</li>
+              )}
+
+              <li>
+                <div
+                  className={`sidebar-link ${
+                    location.pathname === "/exams" ? "active" : ""
+                  }`}
+                  onClick={() => handleNavigate("/exams")}
+                >
+                  <div className="emoji-collapsed">⏳</div>
+
+                  {(!collapsed || hovered) && <span>Exams</span>}
                 </div>
               </li>
 
@@ -317,7 +400,7 @@ const DashboardLayout = ({ children }) => {
                   }`}
                   onClick={() => handleNavigate("/reports")}
                 >
-                    <div className="emoji-collapsed">📈 </div>
+                  <div className="emoji-collapsed">📈 </div>
 
                   {(!collapsed || hovered) && <span>Reports</span>}
                 </div>
@@ -326,11 +409,11 @@ const DashboardLayout = ({ children }) => {
               <li>
                 <div
                   className={`sidebar-link ${
-                    location.pathname === "/ss" ? "active" : ""
+                    location.pathname === "/profile" ? "active" : ""
                   }`}
-                  onClick={() => handleNavigate("/")}
+                  onClick={() => handleNavigate("/profile")}
                 >
-                    <div className="emoji-collapsed">⚙️ </div>
+                  <div className="emoji-collapsed">⚙️ </div>
                   {(!collapsed || hovered) && <span>Settings</span>}
                 </div>
               </li>

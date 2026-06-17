@@ -10,6 +10,7 @@ import {
   Radio,
   Select,
   Upload,
+  TimePicker,
 } from "antd";
 import { useEffect } from "react";
 import "./CommonForm.css";
@@ -18,16 +19,22 @@ import { CustomRow } from "@components/others";
 const renderFields = (field) => {
   switch (field.type) {
     case "select":
-      return <Select placeholder={field.placeholder} options={field.options} />;
+      return (
+        <Select
+          placeholder={field.placeholder}
+          options={field.options || []}
+          allowClear
+        />
+      );
 
     case "radio":
       return (
         <Radio.Group>
-          {field.options?.map((opt) => {
+          {field.options?.map((opt) => (
             <Radio key={opt.value} value={opt.value}>
               {opt.label}
-            </Radio>;
-          })}
+            </Radio>
+          ))}
         </Radio.Group>
       );
 
@@ -35,9 +42,19 @@ const renderFields = (field) => {
       return (
         <DatePicker
           style={{ width: "100%" }}
-          placeholder={field.placeholder || "Select date"}
+          placeholder={field.placeholder || "Select Date"}
         />
       );
+
+    case "time":
+      return (
+        <TimePicker
+          style={{ width: "100%" }}
+          format="HH:mm"
+          placeholder={field.placeholder || "Select Time"}
+        />
+      );
+
     case "number":
       return (
         <InputNumber
@@ -48,15 +65,27 @@ const renderFields = (field) => {
 
     case "file":
       return (
-        <Upload beforeUpload={() => false} maxCount={1}>
+        <Upload
+          beforeUpload={() => false}
+          maxCount={1}
+          accept={field.accept}
+        >
           <Button icon={<UploadOutlined />}>
-            {field.placeholder || "Upload file"}
+            {field.placeholder || "Upload File"}
           </Button>
         </Upload>
       );
 
     case "password":
       return <Input.Password placeholder={field.placeholder} />;
+
+    case "textarea":
+      return (
+        <Input.TextArea
+          rows={4}
+          placeholder={field.placeholder}
+        />
+      );
 
     default:
       return <Input placeholder={field.placeholder} />;
@@ -69,6 +98,7 @@ export const CommonForm = ({
   onSubmit,
   onClose,
   mode = "",
+  mediumdisplay,
   initialValues = {},
 }) => {
   const [form] = Form.useForm();
@@ -89,10 +119,8 @@ export const CommonForm = ({
   const formatFile = (file) => {
     if (!file) return [];
 
-    // already formatted (edit again case)
     if (Array.isArray(file)) return file;
 
-    // string (URL from backend)
     if (typeof file === "string") {
       return [
         {
@@ -112,7 +140,6 @@ export const CommonForm = ({
       const formattedValues = { ...initialValues };
 
       fields.forEach((field) => {
-        // ✅ handle select object → id
         if (
           field.type === "select" &&
           typeof initialValues[field.name] === "object"
@@ -120,9 +147,10 @@ export const CommonForm = ({
           formattedValues[field.name] = initialValues[field.name]?.id;
         }
 
-        // ✅ handle file fields dynamically
         if (field.type === "file") {
-          formattedValues[field.name] = formatFile(initialValues[field.name]);
+          formattedValues[field.name] = formatFile(
+            initialValues[field.name]
+          );
         }
       });
 
@@ -135,34 +163,52 @@ export const CommonForm = ({
   return (
     <Card className="form-card">
       <>
-        <CustomRow space={[12,12]} style={{marginBottom:"30px"}}>
+        <CustomRow
+          space={[12, 12]}
+          style={{ marginBottom: "30px" }}
+        >
           <Col span={24} md={18}>
             <h3>
-              <PlusOutlined /> {mode === "edit" ? "Edit" : "Add New"} {name}
+              <PlusOutlined />{" "}
+              {mode === "edit" ? "Edit" : "Add New"} {name}
             </h3>
           </Col>
-          <Col span={24} md={6} style={{textAlign:"end"}}>
-            <CloseOutlined className="close-btn" onClick={onClose} />
-            <h3></h3>
+
+          <Col
+            span={24}
+            md={6}
+            style={{ textAlign: "end" }}
+          >
+            <CloseOutlined
+              className="close-btn"
+              onClick={onClose}
+            />
           </Col>
         </CustomRow>
 
         <Form
           form={form}
-          className="form"
           layout="vertical"
+          className="form"
           onFinish={handleFinish}
         >
           <CustomRow space={[12, 12]}>
             {fields.map((field, index) => (
-              <Col span={24} md={8} key={index}>
+              <Col
+                span={24}
+                md={mediumdisplay || 8}
+                key={index}
+              >
                 <Form.Item
                   name={field.name}
                   label={field.label}
+                  rules={field.rules}
                   {...(field.type === "file" && {
                     valuePropName: "fileList",
                     getValueFromEvent: (e) =>
-                      Array.isArray(e) ? e : e?.fileList || [],
+                      Array.isArray(e)
+                        ? e
+                        : e?.fileList || [],
                   })}
                 >
                   {renderFields(field)}
@@ -172,12 +218,18 @@ export const CommonForm = ({
           </CustomRow>
 
           <div className="formFoot">
-            <Button style={{ backgroundColor: "#00b050" }} htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ backgroundColor: "#00b050" }}
+            >
               {mode === "edit" ? "Update" : "Save"} {name}
             </Button>
+
             <Button
-              style={{ backgroundColor: "#ed1c24" }}
+              danger
               onClick={handleReset}
+              style={{ backgroundColor: "#ed1c24", color: "#fff" }}
             >
               Reset
             </Button>

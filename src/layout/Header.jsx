@@ -8,8 +8,8 @@ import { HiOutlineDocumentText } from "react-icons/hi";
 import { RiLogoutCircleRLine, RiSettingsLine } from "react-icons/ri";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import logoFull from "../assets/images/EduProLogo.png"
-import { logOut } from "@modules/Auth/authSlice";
-import { useDispatch } from "react-redux";
+import { logOut, selectCurrentRoleName, selectCurrentUser } from "@modules/Auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export const HeaderSection = ({
   toggleSidebar,
@@ -26,6 +26,9 @@ export const HeaderSection = ({
   const mobileMenuRef = useRef(null);
 
   const dispatch = useDispatch() ;
+  const userName = useSelector(selectCurrentUser) ;
+  const roleName = useSelector(selectCurrentRoleName) ;
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -135,8 +138,8 @@ export const HeaderSection = ({
                   className="dropdown-img"
                 />
                 <div>
-                  <h4>Jai Official</h4>
-                  <span>Super Admin</span>
+                  <h4>{userName}</h4>
+                  <span>{roleName}</span>
                 </div>
               </div>
 
@@ -174,7 +177,7 @@ export const HeaderSection = ({
               <ul>
                 <li onClick={() => navigate("/my-profile")}>My Profile</li>
                 <li onClick={() => navigate("/settings")}>Settings</li>
-                <li onClick={() => alert("Logged Out!")}>
+                <li onClick={handleLogOut}>
                   <RiLogoutCircleRLine /> Logout
                 </li>
               </ul>

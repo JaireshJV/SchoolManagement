@@ -1,0 +1,219 @@
+.common-modal .ant-modal-content {
+    border-radius: 8px;
+    padding: 0;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HEADER */
+.profile-header {
+    position: relative;
+    background: linear-gradient(135deg, #00b050, #009245);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+/* WHEN PROFILE EXISTS */
+.profile-header.with-profile {
+    min-height: 140px;
+}
+
+/* WHEN PROFILE HIDDEN (batch, etc.) */
+.profile-header.no-profile {
+    min-height: 140px;
+    justify-content: flex-end;
+    margin-bottom: 0;
+}
+
+/* FLOATING STATUS CARD */
+.profile-status-card {
+    position: absolute;
+    bottom: 0;
+    right: 40px;
+    background: #fff001;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    min-width: 260px;
+    min-height: 100px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-innercard{
+    position: absolute;
+    bottom: 0;
+    right: 240px;
+    background: #91e0a6;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    min-width: 160px;
+    min-height: 60px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+/* STATUS TITLE */
+.status-title {
+    font-size: 25px;
+    color: green;
+    font-weight: 800;
+}
+
+/* USER SECTION */
+.profile-user-section {
+    position: absolute;
+    left: 30px;
+    bottom: -135px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* PROFILE IMAGE */
+.profile-logo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 7px solid #fff;
+    background: #fff;
+    /* box-shadow: 0 4px 15px rgba(0,0,0,0.2); */
+}
+
+/* PROFILE NAME */
+.profile-title {
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    font-weight: 700;
+    color: #00b050;
+    text-align: center;
+}
+
+.profile-content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 30px 0px 20px 0px;
+}
+
+.profile-content.with-profile{
+    margin-top: 150px;
+}
+
+.profile-card{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #ececec;
+    padding: 12px;
+    margin: 0px 10px 0px 10px;
+    border-radius: 14px;
+    transition: 0.3s ease;
+}
+
+.profile-card:hover{
+    border-color: #00b050;
+    background: #f3fff7;
+    transform: translateY(-2px);
+}
+
+/* ICON */
+.profile-card-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    border: 2px solid #b6facf;
+    background: #e9fff1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* LABEL */
+.profile-card-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: #777;
+}
+
+/* VALUE */
+.profile-card-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* DOCUMENT CONTAINER */
+.document-container {
+    grid-column: span 3;
+    background: #fbfbf7;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ececec;
+}
+
+/* HEADER */
+.document-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 18px;
+}
+
+/* GRID */
+.document-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+}
+
+/* CARD */
+.document-card {
+    /* background: #fafcef; */
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #b6facf;
+    transition: 0.3s ease;
+}
+
+.document-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* IMAGE */
+.document-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background: #f2f2f2;
+}
+
+/* LABEL */
+.document-label {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+    background-color: #e9fff1;
+}
+
+
+@media (max-width: 768px) {
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+}

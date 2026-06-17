@@ -15,6 +15,14 @@ import VideoManager from "@modules/RecordedVideos/Partials/VideoManager";
 import StudyMaterials from "@modules/StudyMaterial/Partials/StudyMaterial";
 import { Teachers } from "@modules/Teachers/Teacher";
 import { Batches } from "@modules/Batches/Batches";
+import { Marks } from "@modules/Marks/Marks";
+import { Profile } from "@modules/Profile/Profile";
+import { Subjects } from "@modules/Subjects/Subjects";
+import { Chapters } from "@modules/Chapters/Chapters";
+import { Topics } from "@modules/Topics/Topics";
+import { QuestionBankPage } from "@modules/QuestionBank/QuestionBankPage";
+import Exams from "@modules/Exams/Partials/Exams";
+import Franchise from "@modules/Franchise/Franchise";
 
 export const anonymous = [
   {
@@ -64,13 +72,13 @@ export const adminAuthenticated = [
     routePath: "/parents",
     Component: Parents,
   },
-    {
+  {
     routePath: "/teachers",
-    Component: Teachers ,
+    Component: Teachers,
   },
-     {
+  {
     routePath: "/batches",
-    Component: Batches ,
+    Component: Batches,
   },
   {
     routePath: "/attendance",
@@ -78,7 +86,19 @@ export const adminAuthenticated = [
   },
   {
     routePath: "/courseManagement",
-    Component: CourseManagement ,
+    Component: CourseManagement,
+  },
+  {
+    routePath: "/subjects",
+    Component: Subjects,
+  },
+  {
+    routePath: "/chapters",
+    Component: Chapters,
+  },
+  {
+    routePath: "/topics",
+    Component: Topics,
   },
   {
     routePath: "/classSchedule",
@@ -97,8 +117,32 @@ export const adminAuthenticated = [
     Component: StudyMaterials,
   },
   {
+    routePath: "/marks",
+    Component: Marks,
+  },
+  {
+    routePath: "/mocktest",
+    Component: ViewStudent,
+  },
+  {
+    routePath: "/exams",
+    Component: Exams,
+  },
+  {
+    routePath: "/profile",
+    Component: Profile,
+  },
+  {
+    routePath: "/franchise",
+    Component: Franchise,
+  },
+  {
     routePath: "/reports",
     Component: Reports,
+  },
+  {
+    routePath: "/question",
+    Component: QuestionBankPage,
   },
 ];
 

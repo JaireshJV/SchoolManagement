@@ -240,7 +240,7 @@ export const FeeManagement = () => {
 
   return (
     <StyledFeeManagement>
-      <Breadcrumb separator=">">
+      {/* <Breadcrumb separator=">">
         <Breadcrumb.Item>
           <Link to={"/"}>
             <AiFillHome style={{ marginRight: 4 }} />
@@ -248,7 +248,7 @@ export const FeeManagement = () => {
           </Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>Fee Management</Breadcrumb.Item>
-      </Breadcrumb>
+      </Breadcrumb> */}
       <CustomRow space={[12, 12]}>
         {carddata.map((data) => (
           <Col span={24} md={6}>
@@ -273,12 +273,13 @@ export const FeeManagement = () => {
         ))}
       </CustomRow>
 
-      <CustomRow space={[12, 12]}>
+      <CustomRow space={[12, 12]}  style={{ marginTop: "20px" }}>
         <Col span={24} md={24}>
           <CommonTable
             columns={buildColumns}
+            name={'FeeManagement'}
             data={data}
-            style={{ marginTop: "20px" }}
+           
           />
         </Col>
       </CustomRow>

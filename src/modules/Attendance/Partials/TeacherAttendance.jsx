@@ -248,10 +248,11 @@ render : (text,record,index) => index + 1
           </Col>
         ))}
       </CustomRow>
-      <CustomRow space={[12, 12]}>
+      <CustomRow space={[12, 12]} style={{marginTop:"20px"}}>
         <Col span={24} md={24}>
           <CommonTable
             columns={buildColumns}
+            name={'Teacher'}
             data={data}
             style={{ marginTop: "20px" }}
           />

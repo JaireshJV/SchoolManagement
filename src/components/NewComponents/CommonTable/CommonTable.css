@@ -1,8 +1,8 @@
-.table .ant-table-tbody > tr > td {
+.table .ant-table-tbody>tr>td {
   font-size: 12px;
 }
 
-.table .ant-table-thead > tr > th {
+.table .ant-table-thead>tr>th {
   background-color: rgb(240, 243, 252) !important;
   color: rgb(104, 110, 114) !important;
   font-size: 11px !important;
@@ -11,70 +11,92 @@
 
 }
 
-.table .ant-table-thead > tr > th::before {
+.table .ant-table-thead>tr>th::before {
   display: none !important;
 }
 
-.table .ant-card-body{
-    padding: 0 !important;
+.table .ant-card-body {
+  padding: 0 !important;
 }
 
-.table .ant-table-cell{
+.table .ant-table-cell {
   padding: 12px !important;
 }
 
-.table{
-    box-shadow: 0px 4px 6px 1px rgb(210, 210, 210);
+.table {
+  box-shadow: 0px 4px 6px 1px rgb(210, 210, 210);
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.table-head{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    background-color: #1d4dd6;
+.table-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #1d4dd6;
 }
 
-.Student{
+.Student {
   background-color: #00b050;
 }
 
-.Parent{
+.Parent {
   background-color: #1f2937;
 }
 
-.Teacher{
+.Teacher {
   background-color: #3363e9;
 }
 
 .Batches {
-background-color: #660033 ;
+  background-color: #660033;
 }
 
-.title{
-    font-size: 15px;
-    color: #fff;
-    font-weight: 700;
+.FeeManagement {
+  background-color: #5ca50e;
 }
 
-.add-btn{
-    border-radius: 10px;
-    color: #fff;
-    border: none;
-    font-size: 11px;
-    font-weight: 700;
-    box-shadow: 0 0 0 0.3px #fdfdfd;
+.Mark {
+  background-color: white;
 }
 
-.ant-btn.add-btn{
-    height: 25px;
-    padding: 4px !important;
+.StudyMaterial{
+background-color: rgba(134, 168, 22, 0.875);
 }
 
-.ant-card-body{
-    padding: 15px !important;
+.Exams {
+  background-color: #22668a;
+}
+
+.Franchise {
+  background-color: #8a2270;
+}
+.title {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.add-btn {
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 0 0 0.3px #fdfdfd;
+}
+
+.ant-btn.add-btn {
+  height: 25px;
+  padding: 4px !important;
+}
+
+.ant-card-body {
+  padding: 15px !important;
 }
 
 .ant-breadcrumb-separator {
@@ -83,32 +105,43 @@ background-color: #660033 ;
   margin: -4px 8px;
 }
 
-.primary-column{
-    font-weight: 700;
+.primary-column {
+  font-weight: 700;
 }
 
 .action-btn {
-    border: 1px solid rgb(210, 209, 209);
-    border-radius: 10px;
-    padding: 2px 6px !important;
-    height: 26px !important;
-    line-break: 2 !important;
+  border: 1px solid rgb(210, 209, 209);
+  border-radius: 10px;
+  padding: 2px 6px !important;
+  height: 26px !important;
+  line-break: 2 !important;
 }
 
-.action-btn .anticon{
-    font-size: 10px !important;
+.action-btn .anticon {
+  font-size: 10px !important;
 }
 
-.view-btn{
-    color: black;
-    background-color: rgb(210, 250, 210);
-    border: 1px solid rgb(159, 248, 159);
-}
-.view-btn:hover{
-    color: rgb(39, 186, 39) !important;
+.view-btn {
+  color: black;
+  background-color: rgb(210, 250, 210);
+  border: 1px solid rgb(159, 248, 159);
 }
 
-.delete-btn{
-    border: 1px solid #f9caca;   
-    background-color: #fdeaea;
+.view-btn:hover {
+  color: rgb(39, 186, 39) !important;
+}
+
+.download-btn {
+   color: rgb(255, 64, 0);
+  background-color: rgb(234, 223, 224);
+  border: 1px solid rgb(207, 15, 50);
+}
+
+.download-btn:hover {
+  color: rgb(39, 186, 39) !important;
+}
+
+.delete-btn {
+  border: 1px solid #f9caca;
+  background-color: #fdeaea;
 }

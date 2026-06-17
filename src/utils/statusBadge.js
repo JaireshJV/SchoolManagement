@@ -20,69 +20,64 @@ export const getStatus = (type, status) => {
 
   const config = {
     feeStatus: {
-      Paid: {
+      paid: {
         backgroundColor: "#e6f7ee",
         color: "#007a37",
         icon: CheckCircleFilled,
       },
-      Pending: {
+      pending: {
         backgroundColor: "#fffde6",
         color: "#947a03",
         icon: ClockCircleFilled,
       },
-      Overdue: {
+      overdue: {
         backgroundColor: "#fdeaea",
         color: "#ed1c4a",
         icon: ClockCircleFilled,
       },
     },
     subject: {
-      Physics: {
+      physics: {
         backgroundColor: "#eef2ff",
         color: "#1d4ed8",
       },
-      Chemistry: {
+      chemistry: {
         backgroundColor: "#fffde6",
         color: "#947a03",
       },
-      Biology: {
+      biology: {
         backgroundColor: "#e6f7ee",
         color: "#007a37",
       },
     },
     courseStatus: {
-      "NEET & JEE": {
+      "neet & jee": {
         backgroundColor: "#e6f7ee",
         color: "#007a37",
         icon: ClockCircleFilled,
       },
-      Accounting: {
+      accounting: {
         backgroundColor: "#fffde6",
         color: "#947a03",
         icon: ClockCircleFilled,
       },
-      "Air Hostess": {
+      "air hostess": {
         backgroundColor: "#eef2ff",
         color: "#1d4ed8",
         icon: CheckCircleFilled,
       },
-      JEE: {
+      jee: {
         backgroundColor: "#f3cafb",
         color: "#8e06b8",
         icon: SyncOutlined,
       },
-      NEET: {
+      neet: {
         backgroundColor: "#fdeaea",
         color: "#ed1c4a",
         icon: CloseCircleFilled,
-      },
-      UNVERIFIED: {
-        backgroundColor: "#547792",
-        color: "#1a25c4",
-        icon: CloseCircleFilled,
-      },
+      }
     },
-    attendanceStatus: [
+    attendance: [
       {
         min: 90,
         max: 100,
@@ -113,18 +108,20 @@ export const getStatus = (type, status) => {
       },
     ],
     status: {
-      Active: {
+      active: {
         backgroundColor: "#e6f7ee",
         color: "#007a37",
       },
-      Inactive: {
+      inactive: {
         backgroundColor: "#fdeaea",
         color: "#ed1c4a",
       },
     },
   };
+const normalizedStatus =
+  typeof status === "string" ? status.trim().toLowerCase() : status;
 
-  const statusConfig = config[type]?.[status];
+  const statusConfig = config[type]?.[normalizedStatus];
 
   if (type === "attendance") {
     const value = parseInt(status); // "87%" → 87

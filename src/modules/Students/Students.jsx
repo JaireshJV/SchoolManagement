@@ -1,9 +1,15 @@
 import { CommonTable } from "@components/NewComponents/CommonTable/CommonTable";
-import { useMemo, useState } from "react";
-import { studentColumns } from "../FieldColumns/Columns";
-import { studentFields } from "../FieldColumns/InputFields";
+import { useEffect, useMemo, useState } from "react";
+import { studentColumns } from "../../components/FieldColumns/Columns";
+import { studentFields } from "../../components/FieldColumns/InputFields";
 import { CommonForm } from "@components/NewComponents/CommonFormModal/CommonFormModal";
-
+import { getBatches, getCourses, getStudents } from "src/api/getReq";
+import { PostStudent } from "src/api/postReq";
+import dayjs from "dayjs";
+import { UpdateStudent } from "src/api/updateReq";
+import { Delete } from "@components/Delete/Delete";
+import { DeleteStudent } from "src/api/deleteReq";
+import { CommonModal } from "@components/NewComponents/CommonModal/CommonModal";
 
 const data = [
   {
@@ -48,6 +54,58 @@ export const Students = () => {
   const [openForm, setForm] = useState(false);
   const [mode, setMode] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
+  const [courseData, setCourseData] = useState([]);
+  const [batchData, setBatchData] = useState([]);
+  const [dataSource, setDataSource] = useState([]);
+
+  //========Delete Component ========
+  const [deleteId, setDeleteId] = useState(null);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteService, setDeleteService] = useState(null);
+
+  //Common Modal Component
+  const [openModal, setModalOpen] = useState(false);
+
+  // Get Courses
+  const getCourseData = async () => {
+    try {
+      const data = await getCourses();
+      setCourseData(data || []);
+    } catch (err) {
+      console.error("Error fetching courses:", err);
+    }
+  };
+
+  const courseOptions = courseData.map((course) => ({
+    label: course?.courseName,
+    value: course?.courseId,
+  }));
+
+  // Get Batches
+  const getBatchesData = async () => {
+    const data = await getBatches();
+    setBatchData(data);
+  };
+
+  const batchOptions = batchData.map((batch) => ({
+    label: batch?.batchName,
+    value: batch?.batchId,
+  }));
+
+  const fields = studentFields(courseOptions, batchOptions);
+
+  // Student
+
+  const getData = async () => {
+    const data = await getStudents();
+    setDataSource(data);
+  };
+
+  useEffect(() => {
+    getData();
+    getCourseData();
+    getBatchesData();
+  }, []);
 
   const handleAdd = () => {
     setMode("add");
@@ -57,16 +115,24 @@ export const Students = () => {
 
   const handleEdit = (record) => {
     setMode("edit");
-    setSelectedRow(record);
+    setSelectedRow({
+      ...record,
+      dob: record.dob ? dayjs(record.dob) : null,
+      courseId: record?.course?.courseId,
+      batchId: record?.batch?.batchId,
+    });
     setForm(true);
   };
 
   const handleView = (record) => {
-    console.log("view", record);
+    setModalOpen(true);
+    setSelectedRow(record);
   };
 
   const handleDelete = (record) => {
-    console.log("delete", record);
+    setDeleteId(record.studentId);
+    setDeleteService(() => DeleteStudent);
+    setOpenDelete(true);
   };
 
   const columns = useMemo(
@@ -74,13 +140,63 @@ export const Students = () => {
     [handleEdit],
   );
 
-  const handleStudentSubmit = (data) => {
-    if (mode === "edit") {
-      console.log("Updating...", data);
-    } else {
-      console.log("Creating...", data);
+  const handleStudentSubmit = async (data) => {
+    const formatDate = (data) => new Date(data)?.toISOString().split("T")[0];
+    const convertedDOB = formatDate(data?.dob);
+    const formData = new FormData();
+
+    formData.append("studentName", data?.studentName || "");
+    formData.append("gender", data?.gender || "");
+    formData.append("dob", convertedDOB || "");
+    formData.append("mobile", data?.mobile || "");
+    formData.append("email", data?.email || "");
+    formData.append("fatherName", data?.fatherName || "");
+    formData.append("motherName", data?.motherName || "");
+    formData.append("parentMobile", data?.parentMobile || "");
+    formData.append("parentEmail", data?.parentEmail || "");
+    formData.append("parentProfession", data?.parentProfession || "");
+    formData.append("schoolName", data?.schoolName || "");
+    formData.append("currentStandard", data?.currentStandard || "");
+    formData.append("board", data?.board || "");
+    formData.append("medium", data?.medium || "");
+    formData.append("address", data?.address || "");
+    formData.append("district", data?.district || "");
+    formData.append("state", data?.state || "");
+    formData.append("pincode", data?.pincode || "");
+    formData.append("courseId", data?.courseId || "");
+    formData.append("batchId", data?.batchId || "");
+
+    if (data?.profilePhoto && data?.profilePhoto.length > 0) {
+      data?.profilePhoto.forEach((file) => {
+        if (file.originFileObj !== undefined) {
+          formData.append("profilePhoto", file.originFileObj);
+        }
+      });
     }
 
+    if (data?.aadhaarPhoto && data?.aadhaarPhoto.length > 0) {
+      data?.aadhaarPhoto.forEach((file) => {
+        if (file.originFileObj !== undefined) {
+          formData.append("aadhaarPhoto", file.originFileObj);
+        }
+      });
+    }
+
+    if (data?.signature && data?.signature.length > 0) {
+      data?.signature.forEach((file) => {
+        if (file.originFileObj !== undefined) {
+          formData.append("signature", file.originFileObj);
+        }
+      });
+    }
+
+    if (mode === "edit") {
+      await UpdateStudent(data?.studentId, formData);
+    } else {
+      await PostStudent(formData);
+    }
+
+    await getData();
     // ✅ close form after submit
     setForm(false);
     setMode("add");
@@ -94,7 +210,7 @@ export const Students = () => {
           key={mode === "edit" ? selectedRow?.key : "add"}
           name="Student"
           mode={mode}
-          fields={studentFields}
+          fields={fields}
           initialValues={selectedRow}
           onSubmit={handleStudentSubmit}
           onClose={() => setForm(false)}
@@ -124,12 +240,29 @@ export const Students = () => {
 
       <CommonTable
         columns={columns}
-        data={data}
+        data={dataSource}
         name={"Student"}
         onAddClick={handleAdd}
         onClose={() => {
           setForm(false);
         }}
+      />
+
+      <Delete
+        open={openDelete}
+        setOpen={setOpenDelete}
+        deleteId={deleteId}
+        deleteService={deleteService}
+        onSuccess={getData}
+      />
+
+      <CommonModal
+        open={openModal}
+        onClose={() => setModalOpen(false)}
+        record={selectedRow}
+        fields={fields}
+        title="Student"
+        imageKey="profileImage"
       />
     </>
   );

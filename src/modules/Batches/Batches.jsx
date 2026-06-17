@@ -1,97 +1,57 @@
-import { Button, Space, Tag, Tooltip } from "antd";
-import { EditOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
-import { getStatus } from "@utils/statusBadge";
+import { useEffect, useMemo, useState } from "react";
 import { CommonTable } from "@components/NewComponents/CommonTable/CommonTable";
 import { CommonForm } from "@components/NewComponents/CommonFormModal/CommonFormModal";
-import { batchFields } from "@modules/FieldColumns/InputFields";
 import { PostBatches } from "src/api/postReq";
-import { getCourses } from "src/api/getReq";
-import { Alert } from "@components/alert/AlertService";
+import { getBatches, getCourses } from "src/api/getReq";
 
-const columns = [
-  {
-    title: "ACTIONS",
-    dataIndex: "actions",
-    key: "actions",
-    render: (_, record) => (
-      <Space>
-        <Tooltip title="edit">
-          <Button
-            className="action-btn edit-btn"
-            icon={<EditOutlined />}
-            type="link"
-            onClick={() => handleEdit(record)}
-          />
-        </Tooltip>
-      </Space>
-    ),
-  },
-  {
-    title: "batches",
-    dataIndex: "batches",
-    key: "batches",
-    className: "primary-column",
-  },
-  {
-    title: "LINKED STUDENT",
-    dataIndex: "linkedstudent",
-    key: "linkedstudent",
-  },
-  {
-    title: "PHONE",
-    dataIndex: "phone",
-    key: "phone",
-  },
-  {
-    title: "STATUS",
-    dataIndex: "status",
-    key: "status",
-    render: (status) => {
-      const { style, Icon } = getStatus("status", status);
-
-      return (
-        <Tag style={style}>
-          {Icon && <Icon />}
-          {status}
-        </Tag>
-      );
-    },
-  },
-];
-
-const data = [
-  {
-    key: "1",
-    batches: "John Doe",
-    linkedstudent: "Will",
-    phone: "+91 9876543210",
-    status: "Active",
-  },
-  {
-    key: "2",
-    batches: "Jane Smith",
-    linkedstudent: "Emma",
-    phone: "+91 9123456780",
-    status: "Inactive",
-  },
-  {
-    key: "3",
-    batches: "Michael Brown",
-    linkedstudent: "Liam",
-    phone: "+91 9988776655",
-    status: "Active",
-  },
-];
+import dayjs from "dayjs";
+import { UpdateBatch } from "src/api/updateReq";
+import { DeleteBatch } from "src/api/deleteReq";
+import { batchFields } from "@components/FieldColumns/InputFields";
+import { batchColumns } from "@components/FieldColumns/Columns";
+import { Delete } from "@components/Delete/Delete";
+import { CustomModal } from "@components/others";
+import { BatchesDetails } from "./BatchesDetails";
+import { CommonModal } from "@components/NewComponents/CommonModal/CommonModal";
 
 export const Batches = () => {
   const [openForm, setForm] = useState(false);
   const [mode, setMode] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
-
   const [courseData, setCourseData] = useState([]);
+  const [batchData, setBatchData] = useState([]);
+  const [deleteId, setDeleteId] = useState(null);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteService, setDeleteService] = useState(null);
 
-  const getData = async () => {
+  // ====== Modal States ========
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalContent, setModalContent] = useState(null);
+  const [width, setWidth] = useState(0);
+
+  // ===== Modal Functions =====
+  //Common Modal Component
+  const [openModal, setModalOpen] = useState(false);
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+    setTimeout(() => {
+      setModalContent(null);
+    }, 300);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    setTimeout(() => {
+      setModalContent(null);
+    }, 300);
+  };
+
+  // ===== OTHER FUNCTIONS =====
+
+  //Get Courses Details
+  const getCourseData = async () => {
     try {
       const data = await getCourses();
       setCourseData(data || []);
@@ -100,43 +60,81 @@ export const Batches = () => {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // Get Batches
+  const getBatchesData = async () => {
+    const data = await getBatches();
+    setBatchData(data);
+  };
 
-  console.log(courseData, "courseData");
+  useEffect(() => {
+    getCourseData();
+    getBatchesData();
+  }, []);
 
   const courseOptions = courseData.map((course) => ({
     label: course?.courseName,
     value: course?.courseId,
   }));
 
-  console.log(courseOptions, "courseOptions");
-
   const fields = batchFields(courseOptions);
 
   const handleBatchesSubmit = async (data) => {
+    const batchtime = dayjs(data?.timing).format("HH:mm");
+
+    const newVal = {
+      ...data,
+      timing: batchtime,
+    };
+    console.log(newVal,'newwwww');
+    
     if (mode === "edit") {
-      console.log("Updating...", data);
+      await UpdateBatch(data.batchId, newVal);
     } else {
-      PostBatches(data);
+      await PostBatches(newVal);
     }
-    // ✅ close form after submit
+    await getBatchesData();
     setForm(false);
     setMode("add");
     setSelectedRow(null);
   };
 
-  const handleEdit = (record) => {
-    console.log("Edit:", record);
+  const handleView = (record) => {
+    setModalOpen(true);
+    setSelectedRow(record);
   };
+
+  const handleDelete = (record) => {
+    setDeleteId(record.batchId);
+    setDeleteService(() => DeleteBatch);
+    setOpenDelete(true);
+  };
+
+  const handleEdit = (record) => {
+    setMode("edit");
+    setSelectedRow({
+      ...record,
+      courseId: record.course?.courseId,
+      startDate: record.startDate ? dayjs(record.startDate) : null,
+      endDate: record.endDate ? dayjs(record.endDate) : null,
+      timing: record.timing ? dayjs(record?.timing, "HH:mm") : null,
+    });
+    setForm(true);
+  };
+
+  const columns = useMemo(
+    () => batchColumns(handleView, handleEdit, handleDelete),
+    [handleEdit],
+  );
 
   return (
     <>
       <div className={`top-form ${openForm ? "open" : ""}`}>
         <CommonForm
+          key={mode === "edit" ? selectedRow?.key : "add"}
           name="batches"
+          mode={mode}
           fields={fields}
+          initialValues={selectedRow}
           onSubmit={handleBatchesSubmit}
           onClose={() => setForm(false)}
         />
@@ -144,7 +142,7 @@ export const Batches = () => {
 
       <CommonTable
         columns={columns}
-        data={data}
+        data={batchData}
         name={"Batches"}
         onAddClick={() => {
           setForm((prev) => !prev);
@@ -152,6 +150,31 @@ export const Batches = () => {
         onClose={() => {
           setForm(false);
         }}
+      />
+
+      <CustomModal
+        isVisible={isModalOpen}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
+        width={width}
+        modalTitle={modalTitle}
+        modalContent={modalContent}
+      />
+
+      <Delete
+        open={openDelete}
+        setOpen={setOpenDelete}
+        deleteId={deleteId}
+        deleteService={deleteService}
+        onSuccess={getBatchesData}
+      />
+
+      <CommonModal
+        open={openModal}
+        onClose={() => setModalOpen(false)}
+        record={selectedRow}
+        fields={fields}
+        title="Batch"
       />
     </>
   );

@@ -28,15 +28,12 @@ import {
   HomeOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { StudentModal } from "./StudentView";
 import { FaRegEye } from "react-icons/fa";
 import { AiFillPrinter } from "react-icons/ai";
-import CustomResizableDrawer from "@components/form/CustomDrawerResizable";
 import CustomDrawer from "@components/form/CustomDrawer";
 import { useNavigate } from "react-router-dom";
 import { useFetchImageAsBase64 } from "@utils/fetchImageAsBase64";
 import { PDFViewer } from "@react-pdf/renderer";
-import { HallTicketView } from "./HallTicket";
 import { AdmitCardPDF } from "./AdmitCardPDF";
 import AddNewStudent from "./AddStudent";
 

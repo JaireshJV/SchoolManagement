@@ -4,9 +4,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+  position: fixed ;
+  width: 100% !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   z-index: 1000;
+  top: 0;
+  left: 0;
 }
 
 /* ====== Header Actions Wrapper ====== */

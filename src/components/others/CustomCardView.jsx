@@ -1,21 +1,26 @@
 import styled from "styled-components";
 
 const CustomCard = styled.div`
-    background: #ffffff;
-    box-shadow: 4px 4px 20px 0px #0000001F;
-    margin:auto;
-    max-width:${props => props.width || '100%'};
-    padding:25px;
-    border-radius:10px;
-`
+  background: #ffffff;
+  box-shadow: 4px 4px 20px 0px #0000001f;
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  cursor: pointer;
 
-const CustomCardView = ({ children, width, style }) => {
-    
-    return (
-        <CustomCard width={width} style={style}>
-            {children}
-        </CustomCard>
-    )
-}
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.12);
+  }
+`;
 
-export default CustomCardView
+const CustomCardView = ({ children, style, onClick }) => {
+  return (
+    <CustomCard style={style} onClick={onClick}>
+      {children}
+    </CustomCard>
+  );
+};
+
+export default CustomCardView;

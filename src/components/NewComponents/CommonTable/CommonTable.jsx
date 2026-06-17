@@ -20,7 +20,7 @@ export const CommonTable = ({ columns, data, name, onAddClick, ...rest }) => {
       </div>
 
       <Table
-        className="table"
+        style={{maxHeight:"350px",overflowY:"auto",overflowX:"auto"}}
         size="large"
         columns={columns}
         dataSource={data}
